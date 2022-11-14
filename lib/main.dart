@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kochure_quiz_app/brand_colors.dart';
 import 'package:kochure_quiz_app/image_constants.dart';
+import 'package:kochure_quiz_app/screens/main_screen.dart';
 import 'package:kochure_quiz_app/utils/create_material_color.dart';
 
 void main() {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Kochure Quiz',
       theme: ThemeData(
           primarySwatch: createMaterialColor(BrandColors.colorPrimary)),
-      home: const OnboardScreen(title: 'Flutter Demo Home Page'),
+      home: const MainScreen(),
     );
   }
 }
