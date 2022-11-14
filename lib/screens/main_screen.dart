@@ -8,18 +8,26 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: SafeArea(
-        child: Container(
-          color: BrandColors.colorPrimaryMaterial,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children:  [Text(
-                "Let's play a Quiz"
+        child: Stack(
+          children: [
+            Container(
+              color: BrandColors.colorPrimaryMaterial,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children:  const [
+                  Spacer(),
+                  Text(
+                    "Let's play a Quiz", style: TextStyle(fontSize: 18, color: BrandColors.currencyCardActiveColor),
+                  ),
+                  Text("Enter your information below", style: TextStyle(fontSize: 14, color: BrandColors.currencyCardActiveColor)
+                  ),
+                  Spacer(),
+
+                ],
               ),
-              Text("Enter your information below"),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
