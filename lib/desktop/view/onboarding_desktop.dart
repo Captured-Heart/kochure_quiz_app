@@ -1,32 +1,20 @@
 
-
 import '../../app.dart';
 
-class OnboardScreenDesktop extends StatefulWidget {
-  const OnboardScreenDesktop({super.key, required this.title});
+class OnboardScreenDesktop extends StatelessWidget {
+  const OnboardScreenDesktop({
+    Key? key,
+    required this.size,
+  }) : super(key: key);
 
-  final String title;
+  final Size size;
 
-  @override
-  State<OnboardScreenDesktop> createState() => _OnboardScreenState();
-}
-
-class _OnboardScreenState extends State<OnboardScreenDesktop> {
-  List<String> title = [
-    'goood',
-    'build',
-    'doooom',
-    'final',
-  ];
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Container(
-        color: Colors.red,
+    return QuizAppBackground(
+      size: size,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 35),
         height: size.height,
         width: size.width,
         child: Column(
@@ -46,13 +34,15 @@ class _OnboardScreenState extends State<OnboardScreenDesktop> {
                   fit: BoxFit.fill,
                 ),
                 AnimatedTextKit(
+                  repeatForever: true,
                   animatedTexts: [
                     TypewriterAnimatedText(
                       'Kochure',
                       cursor: '',
-                      speed: const Duration(milliseconds: 200),
+                      speed: const Duration(milliseconds: 150),
                       textStyle: GoogleFonts.abrilFatface(
                         fontSize: size.height * 0.08,
+                        color: BrandColors.colorBackground,
                       ),
                     ),
                   ],
@@ -66,37 +56,55 @@ class _OnboardScreenState extends State<OnboardScreenDesktop> {
                           ])
                       .toList()),
             ),
-            SizedBox(
-              height: size.height * 0.6,
-              width: size.width * 0.5,
-              child: Expanded(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
+            Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              spacing: 20,
+              runSpacing: 20,
+              children: [
+                OnScreenAds(
+                  title: 'title',
+                  size: size,
+                ),
+                OnScreenAds(
+                  title: 'title',
+                  size: size,
+                ),
+                OnScreenAds(
+                  title: 'title',
+                  size: size,
+                ),
+                OnScreenAds(
+                  title: 'title',
+                  size: size,
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                right: size.width * 0.08,
+                top: size.height * 0.03,
+              ),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    backgroundColor: BrandColors.colorPrimaryDark,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40, vertical: 20),
                   ),
-
-                  shrinkWrap: true,
-                  // physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 4,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      color: BrandColors.colorBackground,
-                      // elevation: 4,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text('data'),
-                          ListTile(
-                            title: Text(title[index]),
-                            subtitle: const Text('ndsdbhsds'),
-                          ),
-                        ],
-                      ),
-                    );
+                  onPressed: () {
+                    pushNamed(context, AuthScreenDesktop.routeName);
                   },
+                  child: const Text(
+                    'Next',
+                    textScaleFactor: 1.3,
+                  ),
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
