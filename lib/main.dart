@@ -3,7 +3,9 @@ import 'package:kochure_quiz_app/desktop/view/desktop_main.dart';
 import 'package:kochure_quiz_app/mobile/views/mobile_main.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(
+    child:  MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -17,13 +19,12 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             primarySwatch: createMaterialColor(BrandColors.colorPrimary)),
-        home: const Responsive(
+        home: Responsive(
           desktop: DesktopMain(),
-          mobile: MobileMain(),
+          mobile: const MobileMain(),
           tablet: DesktopMain(),
         )
         // const OnboardScreenDesktop(title: 'Flutter Demo Home Page'),
         );
   }
 }
-
