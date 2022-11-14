@@ -7,6 +7,13 @@ class MobileMain extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return AuthScreenMobile();
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.all(20),
+
+        ),
+      ),
+    );
   }
 }

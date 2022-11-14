@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../brand_colors.dart';
+import 'mobile_main.dart';
 
 class AuthScreenMobile extends StatelessWidget {
   final myController = TextEditingController();
-   AuthScreenMobile({Key? key}) : super(key: key);
+
+  AuthScreenMobile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,10 @@ class AuthScreenMobile extends StatelessWidget {
               const Spacer(),
               const Text(
                 "Let's play a Quiz",
-                style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500),
               ),
               const SizedBox(
                 height: 10,
@@ -30,11 +35,9 @@ class AuthScreenMobile extends StatelessWidget {
               ),
               TextField(
                 controller: myController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: "Username",
-                  hintStyle:
-                      TextStyle(color: BrandColors.colorPrimaryMaterial[400]),
-                  border: const OutlineInputBorder(
+                  border:  OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   )),
@@ -46,11 +49,9 @@ class AuthScreenMobile extends StatelessWidget {
               TextField(
                 controller: myController,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration:const  InputDecoration(
                   hintText: "Email",
-                  hintStyle:
-                      TextStyle(color: BrandColors.colorPrimaryMaterial[400]),
-                  border: const OutlineInputBorder(
+                  border:  OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   )),
@@ -62,11 +63,10 @@ class AuthScreenMobile extends StatelessWidget {
               TextField(
                 controller: myController,
                 keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
+                  filled: true,
                   hintText: "Phone number",
-                  hintStyle:
-                      TextStyle(color: BrandColors.colorPrimaryMaterial[400]),
-                  border: const OutlineInputBorder(
+                  border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   )),
@@ -76,21 +76,28 @@ class AuthScreenMobile extends StatelessWidget {
                 height: 20,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return const MobileMain ();
+                  }));
+                },
                 child: Container(
                   alignment: Alignment.center,
                   height: 50,
                   width: double.maxFinite,
                   decoration: BoxDecoration(
-                      color: BrandColors.colorPrimaryMaterial[400],
+                      gradient: LinearGradient ( colors:[BrandColors.colorPrimaryMaterial.shade100, BrandColors.colorPrimaryMaterial.shade400]),
                       borderRadius:
                           const BorderRadius.all(Radius.circular(12))),
                   child: const Text(
-                    'Start Quiz', style: TextStyle(color: BrandColors.quickactionsBg, fontWeight: FontWeight.bold),
+                    'Start Quiz',
+                    style: TextStyle(
+                        color: BrandColors.quickactionsBg,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
-              const Spacer(),
+              const Spacer( flex: 2,),
             ],
           ),
         ),
