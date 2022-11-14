@@ -1,12 +1,6 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kochure_quiz_app/app.dart';
-import 'package:kochure_quiz_app/brand_colors.dart';
-import 'package:kochure_quiz_app/image_constants.dart';
 import 'package:kochure_quiz_app/desktop/view/desktop_main.dart';
 import 'package:kochure_quiz_app/mobile/views/mobile_main.dart';
-import 'package:kochure_quiz_app/utils/create_material_color.dart';
 
 void main() {
   runApp(const MyApp());
