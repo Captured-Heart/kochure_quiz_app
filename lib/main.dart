@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: createMaterialColor(BrandColors.colorPrimary)),
         home: Responsive(
           desktop: DesktopMain(),
-          mobile: const MobileMain(),
+          mobile: const QuizScreen(),
           tablet: DesktopMain(),
         )
         // const OnboardScreenDesktop(title: 'Flutter Demo Home Page'),
