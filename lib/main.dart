@@ -1,6 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:kochure_quiz_app/brand_colors.dart';
+import 'package:kochure_quiz_app/image_constants.dart';
 import 'package:kochure_quiz_app/utils/create_material_color.dart';
 
 void main() {
@@ -55,9 +57,23 @@ class _OnboardScreenState extends State<OnboardScreen> {
             SizedBox(
               width: size.width,
               height: size.height * 0.2,
-              child: AnimatedTextKit(
-                animatedTexts: [
-                  TypewriterAnimatedText('Kochure'),
+              child: Row(
+                children: [
+                  Image.asset(
+                    kochureLogo,
+                    height: size.height * 0.1,
+                    width: size.width * 0.1,
+                    fit: BoxFit.fill,
+                  ),
+                  AnimatedTextKit(
+                    animatedTexts: [
+                      TypewriterAnimatedText(
+                        'Kochure',
+                        speed: const Duration(milliseconds: 200),
+                        textStyle: GoogleFonts.merriweatherSans()
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -67,6 +83,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                   crossAxisCount: 2,
                 ),
                 // shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 4,
                 itemBuilder: (context, index) {
                   return Card(
