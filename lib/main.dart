@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Kochure Quiz',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
             primarySwatch: createMaterialColor(BrandColors.colorPrimary)),
         home: Responsive(
