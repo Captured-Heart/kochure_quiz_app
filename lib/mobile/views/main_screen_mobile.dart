@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../brand_colors.dart';
+import '../../brand_colors.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
+class AuthScreenMobile extends StatelessWidget {
+  const AuthScreenMobile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
