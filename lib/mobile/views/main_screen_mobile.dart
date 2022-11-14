@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 
-import '../../brand_colors.dart';
+import '../../app.dart';
+
 
 class AuthScreenMobile extends StatelessWidget {
   const AuthScreenMobile({Key? key}) : super(key: key);
