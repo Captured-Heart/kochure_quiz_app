@@ -83,7 +83,7 @@ class AuthScreenMobile extends StatelessWidget {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return const MobileMain();
+                      return const QuizScreen();
                     }));
                   },
                   child: Container(

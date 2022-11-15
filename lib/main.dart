@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
                 return DesktopMain();
               case AuthScreenDesktop.routeName:
                 return AuthScreenDesktop();
-              case MobileMain.routeName:
-                return const MobileMain();
+              // case QuizScreen.routeName:
+              //   return const QuizScreen();
               case OnboardScreenDesktop.routeName:
                 return OnboardScreenDesktop(size: size);
               case AuthScreenMobile.routeName:

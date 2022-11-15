@@ -54,7 +54,7 @@ class QuizScreen extends ConsumerWidget {
                   height: 20,
                 ),
                 Expanded(
-                    child: PageView.builder(itemBuilder: (context, index) => QuestionCard(),),)
+                    child: PageView.builder(itemBuilder: (context, index) => const QuestionCard(),),)
               ],
             ),
           ),

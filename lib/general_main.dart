@@ -7,7 +7,7 @@ class GeneralMain extends StatelessWidget {
   Widget build(BuildContext context) {
     return Responsive(
       desktop: DesktopMain(),
-      mobile: const MobileMain(),
+      mobile:  QuizScreen(),
       tablet: DesktopMain(),
     );
   }
