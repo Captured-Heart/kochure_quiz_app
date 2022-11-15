@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:kochure_quiz_app/app.dart';
 
-import '../brand_colors.dart';
 
 class Options extends StatelessWidget {
-  const Options({Key? key}) : super(key: key);
-
+  const Options({
+    Key? key,
+    required this.question,
+  }) : super(key: key);
+  final String question;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,8 +21,9 @@ class Options extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'A crypto company',
-            style: TextStyle(color: Colors.grey.shade400),
+            question,
+            style: TextStyle(color: Colors.grey.shade500),
+            textScaleFactor: Responsive.isMobile(context) ? 1 : 2,
           ),
           IconButton(
             onPressed: () {},

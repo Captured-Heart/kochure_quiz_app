@@ -14,6 +14,7 @@ class QuizAppBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      fit: StackFit.expand,
       children: [
         Image.asset(
           imgPath ?? kochureBg3,
