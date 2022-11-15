@@ -4,6 +4,8 @@ import '../../brand_colors.dart';
 import 'mobile_main.dart';
 
 class AuthScreenMobile extends StatelessWidget {
+  static const String routeName = 'login_screen';
+
   final myController = TextEditingController();
 
   AuthScreenMobile({Key? key}) : super(key: key);

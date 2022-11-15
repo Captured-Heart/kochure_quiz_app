@@ -27,7 +27,6 @@ class BrandColors {
 
   static const Color colorGrey = Color(0xFFF1F1F5);
 
-  static const Color colorinsidePin = Color(0xFF1D38E433);
 
   static const Color colorSkipButton = Color(0xFF536AFE);
 
