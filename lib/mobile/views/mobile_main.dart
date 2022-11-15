@@ -53,7 +53,8 @@ class QuizScreen extends ConsumerWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const QuestionCard()
+                Expanded(
+                    child: PageView.builder(itemBuilder: (context, index) => QuestionCard(),),)
               ],
             ),
           ),
