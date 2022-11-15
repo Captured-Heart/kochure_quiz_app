@@ -1,6 +1,7 @@
+import 'package:kochure_quiz_app/widgets/question_card.dart';
 import 'package:kochure_quiz_app/widgets/timer_card.dart';
+
 import '../../app.dart';
-import '../../widgets/options.dart';
 
 class QuizScreen extends ConsumerWidget {
   const QuizScreen({super.key});
@@ -52,24 +53,7 @@ class QuizScreen extends ConsumerWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
-                  width: double.maxFinite,
-                  padding: const EdgeInsets.all(20),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text('What is Kochure'),
-                      //Options Card
-                      Options(),
-                    ],
-                  ),
-                )
+                const QuestionCard()
               ],
             ),
           ),

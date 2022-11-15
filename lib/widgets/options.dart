@@ -9,7 +9,7 @@ class Options extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 20),
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           border: Border.all(color: BrandColors.colorGrey),
           borderRadius: const BorderRadius.all(
