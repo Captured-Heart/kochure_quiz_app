@@ -9,7 +9,7 @@ class QuestionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.maxFinite,
-      margin: EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       padding: const EdgeInsets.all(20),
       decoration: const BoxDecoration(
         color: Colors.white,
