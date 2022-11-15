@@ -1,3 +1,4 @@
+import 'package:kochure_quiz_app/widgets/timer_card.dart';
 import '../../app.dart';
 import '../../widgets/options.dart';
 
@@ -27,47 +28,8 @@ class QuizScreen extends ConsumerWidget {
                     ),
                   ),
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 35,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: BrandColors.colorGrey),
-                    borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  ),
-                  child: Stack(
-                    children: [
-                      LayoutBuilder(
-                        builder: (context, constraints) => Container(
-                          width: constraints.maxWidth * 0.5,
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20)),
-                              gradient: LinearGradient(colors: [
-                                BrandColors.colorPrimaryMaterial.shade300,
-                                BrandColors.colorPrimaryMaterial.shade500
-                              ])),
-                        ),
-                      ),
-                      Positioned.fill(
-                          child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              '18 secs',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            Icon(
-                              Icons.access_time_rounded,
-                              color: Colors.white,
-                            )
-                          ],
-                        ),
-                      ))
-                    ],
-                  ),
-                ),
+                // Timer
+                const TimerCard(),
                 const SizedBox(
                   height: 20,
                 ),
@@ -104,7 +66,7 @@ class QuizScreen extends ConsumerWidget {
                     children: const [
                       Text('What is Kochure'),
                       //Options Card
-                     Options(),
+                      Options(),
                     ],
                   ),
                 )
