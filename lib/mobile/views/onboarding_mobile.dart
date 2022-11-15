@@ -40,9 +40,7 @@ class OnboardScreenMobile extends StatelessWidget {
                       cursor: '',
                       speed: const Duration(milliseconds: 150),
                       textStyle: GoogleFonts.abrilFatface(
-                        fontSize: Responsive.isDesktop(context)
-                            ? size.height * 0.08
-                            : size.height * 0.001,
+                        fontSize:  size.height * 0.001,
                         color: BrandColors.colorBackground,
                       ),
                     ),

@@ -1,4 +1,3 @@
-
 import '../app.dart';
 
 class QuizAppBackground extends StatelessWidget {
@@ -6,16 +5,18 @@ class QuizAppBackground extends StatelessWidget {
     Key? key,
     required this.size,
     required this.child,
+    this.imgPath,
   }) : super(key: key);
 
   final Size size;
   final Widget child;
+  final String? imgPath;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Image.asset(
-          kochureBg3,
+          imgPath ?? kochureBg3,
           height: size.height,
           width: size.width,
           fit: BoxFit.cover,

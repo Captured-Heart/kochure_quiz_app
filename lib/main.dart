@@ -1,9 +1,14 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:kochure_quiz_app/app.dart';
 import 'package:kochure_quiz_app/general_main.dart';
 
 void main() {
-  runApp(const ProviderScope(
-    child: MyApp(),
+  runApp(ProviderScope(
+    child: DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => const MyApp(),
+    ),
   ));
 }
 
@@ -16,6 +21,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Kochure Quiz',
       debugShowCheckedModeBanner: false,
+      useInheritedMediaQuery: true,
+      builder: DevicePreview.appBuilder,
       theme: ThemeData(
           primarySwatch: createMaterialColor(BrandColors.colorPrimary)),
       home: const GeneralMain(),
@@ -24,6 +31,8 @@ class MyApp extends StatelessWidget {
         return MaterialPageRoute<void>(
           settings: routeSettings,
           builder: (BuildContext context) {
+            final size = MediaQuery.of(context).size;
+
             switch (routeSettings.name) {
               case DesktopMain.routeName:
                 return DesktopMain();
@@ -31,7 +40,8 @@ class MyApp extends StatelessWidget {
                 return AuthScreenDesktop();
               case MobileMain.routeName:
                 return const MobileMain();
-              // ignore: no_duplicate_case_values
+              case OnboardScreenDesktop.routeName:
+                return OnboardScreenDesktop(size: size);
               case AuthScreenMobile.routeName:
                 return AuthScreenMobile();
 

@@ -5,12 +5,10 @@ class GeneralMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Responsive(
-        desktop: DesktopMain(),
-        mobile: const MobileMain(),
-        tablet: DesktopMain(),
-      ),
+    return Responsive(
+      desktop: DesktopMain(),
+      mobile: const MobileMain(),
+      tablet: DesktopMain(),
     );
   }
 }
