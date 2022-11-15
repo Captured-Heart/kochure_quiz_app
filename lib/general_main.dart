@@ -8,7 +8,7 @@ class GeneralMain extends StatelessWidget {
     return Scaffold(
       body: Responsive(
         desktop: DesktopMain(),
-        mobile: const MobileMain(),
+        mobile: const QuizScreen(),
         tablet: DesktopMain(),
       ),
     );
