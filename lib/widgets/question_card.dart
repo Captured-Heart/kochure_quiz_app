@@ -21,7 +21,9 @@ class QuestionCard extends StatelessWidget {
         children: const [
           Text('What is Kochure'),
           //Options Card
-          SizedBox(height: 20/2,),
+          SizedBox(
+            height: 20 / 2,
+          ),
           Options(),
           Options(),
           Options(),
