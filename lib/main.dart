@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:kochure_quiz_app/app.dart';
+import 'package:kochure_quiz_app/desktop/view/quiz_screen_desktop.dart';
 import 'package:kochure_quiz_app/general_main.dart';
 
 void main() {
@@ -38,13 +39,14 @@ class MyApp extends StatelessWidget {
                 return DesktopMain();
               case AuthScreenDesktop.routeName:
                 return AuthScreenDesktop();
-              // case QuizScreen.routeName:
-              //   return const QuizScreen();
+              case QuizScreen.routeName:
+                return const QuizScreen();
               case OnboardScreenDesktop.routeName:
                 return OnboardScreenDesktop(size: size);
               case AuthScreenMobile.routeName:
                 return AuthScreenMobile();
-
+              case QuizScreenDesktop.routeName:
+                return const QuizScreenDesktop();
               default:
                 return const GeneralMain();
             }

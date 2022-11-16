@@ -1,16 +1,35 @@
+
 import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../app.dart';
 
-class AuthScreenDesktop extends StatelessWidget {
+
+
+class AuthScreenDesktop extends ConsumerStatefulWidget {
   static const String routeName = 'login_screen';
+
+  const AuthScreenDesktop({Key? key}) : super(key: key);
+
+  @override
+  AuthScreenDesktopState createState() => AuthScreenDesktopState();
+}
+
+class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
   final myController = TextEditingController();
 
-  AuthScreenDesktop({Key? key}) : super(key: key);
   final GlobalKey<FormState> signUpKey = GlobalKey();
+
   final TextEditingController usernameController = TextEditingController();
+
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController phoneNoController = TextEditingController();
+
+  @override
+  void initState() {
+    ref.read(confettiProvider(10)).play();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +50,7 @@ class AuthScreenDesktop extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                KochureConfettiWidget(ref: ref),
                 const Spacer(
                   flex: 2,
                 ),
@@ -95,42 +115,13 @@ class AuthScreenDesktop extends StatelessWidget {
                           ),
                         ]),
                       ),
-                      InkWell(
+                      KochureButton(
+                        text: 'Start Quiz',
+                        width: size.width,
                         onTap: () {
-                          if (signUpKey.currentState!.validate()) {}
+                          // if (signUpKey.currentState!.validate()) {}
+                          
                         },
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: 50,
-                          width: double.maxFinite,
-                          decoration: BoxDecoration(
-                              gradient: RadialGradient(colors: [
-                                BrandColors.colorPrimary,
-                                BrandColors.colorPrimaryMaterial.shade300,
-                                BrandColors.colorPrimary,
-                                BrandColors.colorPrimaryMaterial.shade600,
-                                BrandColors.colorPrimary,
-                              ], stops: const [
-                                0.1,
-                                0.35,
-                                0.5,
-                                0.75,
-                                0.95,
-                              ], radius: 10),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(12)),
-                              border: Border.all(
-                                color: BrandColors.colorGreen,
-                                width: 2,
-                              )),
-                          child: const Text(
-                            'Start Quiz',
-                            style: TextStyle(
-                                color: BrandColors.quickactionsBg,
-                                fontWeight: FontWeight.bold),
-                            textScaleFactor: 1.6,
-                          ),
-                        ),
                       ),
                     ]
                             .expand((element) => [
@@ -148,6 +139,58 @@ class AuthScreenDesktop extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  
+}
+
+
+class KochureButton extends StatelessWidget {
+  const KochureButton({
+    Key? key,
+    required this.onTap,
+    required this.text,
+    this.width,
+  }) : super(key: key);
+
+  final VoidCallback onTap;
+  final String text;
+  final double? width;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        alignment: Alignment.center,
+        height: 50,
+        width: width,
+        decoration: BoxDecoration(
+            gradient: RadialGradient(colors: [
+              BrandColors.colorPrimary,
+              BrandColors.colorPrimaryMaterial.shade300,
+              BrandColors.colorPrimary,
+              BrandColors.colorPrimaryMaterial.shade600,
+              BrandColors.colorPrimary,
+            ], stops: const [
+              0.1,
+              0.35,
+              0.5,
+              0.75,
+              0.95,
+            ], radius: 10),
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            border: Border.all(
+              color: BrandColors.colorGreen,
+              width: 2,
+            )),
+        child: Text(
+          text,
+          style: const TextStyle(
+              color: BrandColors.quickactionsBg, fontWeight: FontWeight.bold),
+          textScaleFactor: 1.6,
         ),
       ),
     );

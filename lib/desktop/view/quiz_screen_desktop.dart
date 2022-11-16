@@ -1,8 +1,8 @@
 import '../../app.dart';
 
-class QuizScreen extends ConsumerWidget {
-  static const String routeName = 'quiz_screen';
-  const QuizScreen({super.key});
+class QuizScreenDesktop extends ConsumerWidget {
+  static const String routeName = 'QuizScreen';
+  const QuizScreenDesktop({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,15 +19,8 @@ class QuizScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Skip',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
+                SizedBox(
+                  height: size.height * 0.03,
                 ),
                 // Timer
                 const TimerCard(),
@@ -37,11 +30,17 @@ class QuizScreen extends ConsumerWidget {
                 Text.rich(
                   TextSpan(
                     text: "Question ${no + 1}",
-                    style: const TextStyle(fontSize: 18, color: Colors.white),
-                    children: const [
+                    style: TextStyle(
+                      fontSize: Responsive.isMobile(context) ? 18 : 25,
+                      color: Colors.white,
+                    ),
+                    children:  [
                       TextSpan(
                         text: "/11",
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(
+                          fontSize: Responsive.isMobile(context) ? 18 : 25,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
