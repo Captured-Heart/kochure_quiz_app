@@ -32,6 +32,7 @@ class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: QuizAppBackground(
           size: size,
