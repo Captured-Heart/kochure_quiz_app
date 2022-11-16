@@ -1,24 +1,7 @@
-import '../../app.dart';
+import '../../../app.dart';
 
-class DesktopMain extends ConsumerWidget {
-  static const String routeName = 'Welcome_screen';
-  DesktopMain({super.key});
-  final List<String> title = [
-    'goood',
-    'build',
-    'doooom',
-    'final',
-  ];
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return const Scaffold(
-      body: OnboardScreenDesktop(),
-    );
-  }
-}
-
-class OnScreenAds extends StatelessWidget {
-  const OnScreenAds({
+class OnBoardingScreenAds extends StatelessWidget {
+  const OnBoardingScreenAds({
     Key? key,
     required this.title,
     required this.size,

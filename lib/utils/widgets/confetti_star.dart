@@ -1,6 +1,7 @@
 import 'dart:math';
 
-import '../app.dart';
+import '../../app.dart';
+
 
 Path drawStar(Size size) {
     // Method to convert degree to radians

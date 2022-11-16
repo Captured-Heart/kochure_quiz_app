@@ -1,6 +1,7 @@
 import 'package:confetti/confetti.dart';
 
-import '../app.dart';
+import '../../app.dart';
+
 
 class KochureConfettiWidget extends StatelessWidget {
   const KochureConfettiWidget({

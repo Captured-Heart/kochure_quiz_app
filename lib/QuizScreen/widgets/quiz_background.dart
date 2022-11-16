@@ -1,4 +1,4 @@
-import '../app.dart';
+import '../../app.dart';
 
 class QuizAppBackground extends StatelessWidget {
   const QuizAppBackground({

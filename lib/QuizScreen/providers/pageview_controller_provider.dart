@@ -1,4 +1,4 @@
-import '../app.dart';
+import '../../app.dart';
 
 final pageIndexProvider = StateProvider<int>((ref) {
   return 0;

@@ -1,7 +1,6 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
-import 'package:kochure_quiz_app/app.dart';
-import 'package:kochure_quiz_app/desktop/view/quiz_screen_desktop.dart';
+
+import 'app.dart';
 
 void main() {
   runApp(ProviderScope(
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
           builder: (BuildContext context) {
             switch (routeSettings.name) {
               case DesktopMain.routeName:
-                return DesktopMain();
+                return const DesktopMain();
               case AuthScreenDesktop.routeName:
                 return const AuthScreenDesktop();
 

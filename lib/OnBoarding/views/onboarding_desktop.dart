@@ -1,4 +1,4 @@
-import '../../app.dart';
+import '../../../app.dart';
 
 class OnboardScreenDesktop extends StatelessWidget {
   static const String routeName = 'welcome_screen';
@@ -71,22 +71,22 @@ class OnboardScreenDesktop extends StatelessWidget {
                     spacing: 10,
                     runSpacing: 20,
                     children: [
-                      OnScreenAds(
+                      OnBoardingScreenAds(
                         title: 'title',
                         size: size,
                         imgUrl: quizOnBoard2,
                       ),
-                      OnScreenAds(
+                      OnBoardingScreenAds(
                         title: 'title',
                         size: size,
                         imgUrl: quizOnBoard1,
                       ),
-                      OnScreenAds(
+                      OnBoardingScreenAds(
                         title: 'title',
                         size: size,
                         imgUrl: quizOnBoard3,
                       ),
-                      OnScreenAds(
+                      OnBoardingScreenAds(
                         title: 'title',
                         size: size,
                         imgUrl: quizOnBoard4,
