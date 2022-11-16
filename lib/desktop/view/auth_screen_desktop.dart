@@ -1,9 +1,6 @@
-
 import 'package:form_field_validator/form_field_validator.dart';
 
 import '../../app.dart';
-
-
 
 class AuthScreenDesktop extends ConsumerStatefulWidget {
   static const String routeName = 'login_screen';
@@ -43,7 +40,7 @@ class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
             padding: EdgeInsets.only(
               left: Responsive.isDesktop(context)
                   ? size.width * 0.05
-                  : size.width * 0.004,
+                  : size.width * 0.001,
             ),
             alignment: Alignment.center,
             child: Column(
@@ -76,7 +73,9 @@ class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
                   height: size.height * 0.1,
                 ),
                 SizedBox(
-                  width: size.width * 0.4,
+                  width: Responsive.isDesktop(context)
+                      ? size.width * 0.4
+                      : size.width * 0.8,
                   child: Form(
                     key: signUpKey,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -120,7 +119,6 @@ class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
                         width: size.width,
                         onTap: () {
                           // if (signUpKey.currentState!.validate()) {}
-                          
                         },
                       ),
                     ]
@@ -143,10 +141,7 @@ class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
       ),
     );
   }
-
-  
 }
-
 
 class KochureButton extends StatelessWidget {
   const KochureButton({
