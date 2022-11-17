@@ -9,16 +9,21 @@ Widget appLoader({required BuildContext context, required String message}) {
       children: [
         Image.asset(
           kochureLogo,
-          fit: BoxFit.cover,
+          fit: BoxFit.contain,
           alignment: Alignment.center,
-          height: MediaQuery.of(context).size.height * 0.2,
+          height: MediaQuery.of(context).size.height * 0.15,
           width: MediaQuery.of(context).size.width * 0.4,
+        ),
+        const SizedBox(
+          height: 20,
         ),
         Text(
           message,
           style: Theme.of(context).textTheme.headline2?.copyWith(
-              fontWeight: AppFontWeight.medium,
-              color: BrandColors.colorBackground),
+                fontWeight: AppFontWeight.medium,
+                color: BrandColors.colorPrimaryDark,
+              ),
+          textScaleFactor: 0.6,
         )
       ],
     ),
