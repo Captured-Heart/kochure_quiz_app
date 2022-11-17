@@ -1,6 +1,11 @@
+import 'dart:convert';
+import 'dart:developer';
+import 'package:kochure_quiz_app/utils/networking.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:http/http.dart' as http;
 
 import '../../app.dart';
+import '../../model/user.dart';
 
 class AuthScreenDesktop extends ConsumerStatefulWidget {
   static const String routeName = 'login_screen';
@@ -26,6 +31,20 @@ class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
   void initState() {
     ref.read(confettiProvider(10)).play();
     super.initState();
+  }
+
+  Future<List<User>> saveUserData() async {
+    var response =
+        await http.get(Uri.https('https://dev-quiz.herokuapp.com/', 'users'));
+    var jsonData = jsonDecode(response.body);
+    List<User> users = [];
+
+    for (var u in jsonData) {
+      User user = User(name : u["name"], email:  u["email"], phoneNUmber:  u["phone"]);
+      users.add(user);
+    }
+    print("help : ${users.length}");
+    return users;
   }
 
   @override
@@ -118,8 +137,19 @@ class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
                       KochureButton(
                         text: 'Start Quiz',
                         width: size.width,
-                        onTap: () {
+                        onTap: () async{
                           // if (signUpKey.currentState!.validate()) {}
+                          Map mapEmail = {
+                            'email' : emailController.text,
+                            'phone': phoneNoController.text
+                          };
+
+                          var responseEmail = await RequestHelper.postRequest(mapEmail, 'https://dev-quiz.herokuapp.com/users');
+
+                          if (responseEmail !='failed'){
+                            log('response != failed: $responseEmail');
+
+                          }
                         },
                       ),
                     ]
@@ -155,6 +185,7 @@ class KochureButton extends StatelessWidget {
   final VoidCallback onTap;
   final String text;
   final double? width;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -204,6 +235,7 @@ class RegTextField extends StatelessWidget {
   final TextEditingController myController;
   final String hintText;
   final String? Function(String?)? validator;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
