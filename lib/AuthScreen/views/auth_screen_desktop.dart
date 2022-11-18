@@ -1,14 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:kochure_quiz_app/AuthScreen/models/quiz_model.dart';
 import 'package:kochure_quiz_app/AuthScreen/provider/auth_provider.dart';
-import 'package:kochure_quiz_app/AuthScreen/services/post_auth_firebase.dart';
 import 'package:kochure_quiz_app/utils/connectivity.dart';
-import 'package:kochure_quiz_app/utils/networking.dart';
 
 import '../../../app.dart';
-import '../../utils/top_snack_bar.dart';
-import '../services/auth_services.dart';
 
 class AuthScreenDesktop extends ConsumerStatefulWidget {
   static const String routeName = 'login_screen';
@@ -129,11 +123,7 @@ class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
                           onTap: () async {
                             // RequestHelper.submit(context: context);
                             if (signUpKey.currentState!.validate()) {
-                              // Map map = {
-                              //   'name': usernameController.text,
-                              //   'email': emailController.text,
-                              //   'phone': phoneNoController.text,
-                              // };
+                             
 
                               await ref.read(authProvider).signUpWithEmail(
                                     email: emailController.text,
@@ -144,52 +134,10 @@ class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
                                     phoneNo: phoneNoController.text,
                                   );
 
-                              // try {
-                              //   Map map = QuizModel(
-                              //     username: usernameController.text,
-                              //     phoneNo: emailController.text,
-                              //     userId: ref.watch(currentUserUUIDProvider),
-                              //     score: '',
-                              //     scoreTotal: '',
-                              //     questionNo: '',
-                              //     createdAt: Timestamp.now(),
-                              //   ).toJson();
-                              //   await postParticipantsDetailsOnSignUp(ref, map)
-                              //       .whenComplete(() => pushNamed(
-                              //           context, QuizScreenDesktop.routeName));
-                              // } on FirebaseException catch (e) {
-                              //   return topSnack(
-                              //     context: context,
-                              //     message: e.message!,
-                              //     isError: true,
-                              //   );
-                              // }
                               ref
                                   .read(loadingProvider.notifier)
                                   .update((state) => false);
-
-                              //     .whenComplete(() async {
-                              //   Map map = QuizModel(
-                              //     username: usernameController.text,
-                              //     phoneNo: phoneNoController.text,
-                              //     userId: ref.watch(currentUUIDProvider),
-                              //     score: '',
-                              //     scoreTotal: '',
-                              //     questionNo: '',
-                              //     createdAt: Timestamp.now(),
-                              //   ).toJson();
-                              //   await postParticipantsDetailsOnSignUp(ref, map);
-                              //   ref
-                              //       .read(loadingProvider.notifier)
-                              //       .update((state) => false);
-                              // });
-
-                              // await  RequestHelper.login(map: map, context: context)
-                              //       .whenComplete(() => ref
-                              //           .read(loadingProvider.notifier)
-                              //           .update((state) => false));
                             }
-                            // pushNamed(context, QuizScreenDesktop.routeName);
                           },
                         ),
                       ]

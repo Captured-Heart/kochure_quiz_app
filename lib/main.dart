@@ -1,19 +1,19 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:kochure_quiz_app/firebase_options.dart';
+import 'package:kochure_quiz_app/utils/shared_prefs.dart';
 
 import 'app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
+  SharedPrefHelper.initSharedPref();
   runApp(const ProviderScope(
     child:
-    //  DevicePreview(
-    //   enabled: !kReleaseMode,
-    //   builder: (context) => 
-       MyApp(),
+        //  DevicePreview(
+        //   enabled: !kReleaseMode,
+        //   builder: (context) =>
+        MyApp(),
     // ),
   ));
 }

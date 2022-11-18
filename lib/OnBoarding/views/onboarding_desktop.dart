@@ -1,3 +1,5 @@
+import 'package:kochure_quiz_app/utils/shared_prefs.dart';
+
 import '../../../app.dart';
 
 class OnboardScreenDesktop extends StatelessWidget {
@@ -115,7 +117,10 @@ class OnboardScreenDesktop extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        pushNamed(context, AuthScreenDesktop.routeName);
+                        SharedPrefHelper.getUserID().isEmpty ?
+                        pushNamed(context, AuthScreenDesktop.routeName):
+                        pushNamed(context, QuizScreenDesktop.routeName);
+
                       },
                       child: Text(
                         'Next',

@@ -2,15 +2,12 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:kochure_quiz_app/AuthScreen/models/auth_model.dart';
 import 'package:kochure_quiz_app/AuthScreen/services/post_auth_firebase.dart';
+import 'package:kochure_quiz_app/utils/shared_prefs.dart';
 import 'package:kochure_quiz_app/utils/top_snack_bar.dart';
 
 import '../../app.dart';
-import '../models/quiz_model.dart';
-
-final currentUserUUIDProvider = StateProvider<String>((ref) {
-  return '';
-});
 
 class AuthenticationServices {
   AuthenticationServices(this._firebaseAuth);
@@ -34,28 +31,24 @@ class AuthenticationServices {
           .createUserWithEmailAndPassword(email: email, password: password)
           .then(
         (value) async {
-          ref
-              .read(currentUserUUIDProvider.notifier)
-              .update((state) => value.user!.uid);
+          SharedPrefHelper.setUserID(id: value.user!.uid);
 
           ref.read(loadingProvider.notifier).update((state) => false);
           return value;
         },
       );
-      Map map = QuizModel(
+      // ignore: use_build_context_synchronously
+      pushNamed(context, QuizScreenDesktop.routeName);
+      Map map = AuthModel(
         username: username,
         phoneNo: phoneNo,
-        userId: ref.watch(currentUserUUIDProvider),
+        userId: SharedPrefHelper.getUserID(),
         email: email,
-        score: '',
-        scoreTotal: '',
-        questionNo: '',
+        scoreTotal: 0.0,
         createdAt: Timestamp.now(),
       ).toJson();
       await postParticipantsDetailsOnSignUp(ref, map);
-      await postParticipantsScore(ref, map);
-      // ignore: use_build_context_synchronously
-      pushNamed(context, QuizScreenDesktop.routeName);
+
       return user.user;
     } on FirebaseAuthException catch (e) {
       return topSnack(context: context, message: e.message!, isError: true);
