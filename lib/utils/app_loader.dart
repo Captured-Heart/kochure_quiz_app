@@ -19,11 +19,12 @@ Widget appLoader({required BuildContext context, required String message}) {
         ),
         Text(
           message,
+          textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.headline2?.copyWith(
                 fontWeight: AppFontWeight.medium,
-                color: BrandColors.colorPrimaryDark,
+                color: BrandColors.colorBackground,
               ),
-          textScaleFactor: 0.6,
+          textScaleFactor: Responsive.isDesktop(context) ? 0.6 : 0.3,
         )
       ],
     ),

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class Responsive extends StatelessWidget {
   final Widget? mobile;
-  final Widget ? tablet;
+  final Widget? tablet;
   final Widget? desktop;
 
   const Responsive({
     Key? key,
-     this.mobile,
-     this.tablet,
-     this.desktop,
+    this.mobile,
+    this.tablet,
+    this.desktop,
   }) : super(key: key);
 
 // This size work fine on my design,

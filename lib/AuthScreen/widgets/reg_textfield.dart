@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import '../../app.dart';
 
 class RegTextField extends StatelessWidget {
@@ -19,13 +21,18 @@ class RegTextField extends StatelessWidget {
       style: const TextStyle(color: BrandColors.colorBackground, fontSize: 20),
       cursorColor: BrandColors.colorBackground,
       cursorWidth: 6,
+      inputFormatters: [
+        FilteringTextInputFormatter.deny(
+          RegExp(r"\s\b|\b\s"),
+        ),
+      ],
       validator: validator,
       decoration: InputDecoration(
         hintText: hintText,
         filled: true,
-        errorStyle: const TextStyle(
+        errorStyle: TextStyle(
           fontWeight: AppFontWeight.medium,
-          fontSize: 19,
+          fontSize: Responsive.isDesktop(context) ? 19 : 12,
         ),
         fillColor: BrandColors.colorPrimary.withOpacity(0.3),
         hintStyle: const TextStyle(color: BrandColors.colorBackground),

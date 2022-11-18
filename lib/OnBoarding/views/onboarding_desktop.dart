@@ -117,13 +117,14 @@ class OnboardScreenDesktop extends StatelessWidget {
                       onPressed: () {
                         pushNamed(context, AuthScreenDesktop.routeName);
                       },
-                      child:  Text(
+                      child: Text(
                         'Next',
                         style: const TextStyle(
                           fontWeight: AppFontWeight.bold,
                           letterSpacing: 1.5,
                         ),
-                        textScaleFactor:Responsive.isDesktop(context) ? 1.8 : 1.3,
+                        textScaleFactor:
+                            Responsive.isDesktop(context) ? 1.8 : 1.3,
                       ),
                     ),
                   ),

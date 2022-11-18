@@ -8,6 +8,7 @@ class ScoreClassNotifier extends StateNotifier<double> {
   }
 }
 
-final StateNotifierProvider<ScoreClassNotifier, double> scoreClassNotifierProvider = StateNotifierProvider((ref) {
+final StateNotifierProvider<ScoreClassNotifier, double>
+    scoreClassNotifierProvider = StateNotifierProvider((ref) {
   return ScoreClassNotifier();
 });

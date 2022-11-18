@@ -11,4 +11,3 @@ class DesktopMain extends ConsumerWidget {
     );
   }
 }
-

@@ -25,7 +25,7 @@ void pop(BuildContext context) => Navigator.of(context).pop();
 void popRootNavigatorTrue(BuildContext context) =>
     Navigator.of(context, rootNavigator: true).pop();
 
-    //.ofContext PUSH with root navigator == true
+//.ofContext PUSH with root navigator == true
 void pushReplacementOnRootNav(BuildContext context, Widget child) =>
     Navigator.of(context, rootNavigator: true)
         .pushReplacement(MaterialPageRoute(builder: (context) => child));

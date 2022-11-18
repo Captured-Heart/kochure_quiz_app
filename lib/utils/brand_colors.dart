@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class BrandColors {
   static const Color colorPrimary = Color(0xFF2B1A64);
 
-  static const MaterialColor colorPrimaryMaterial  = MaterialColor(
+  static const MaterialColor colorPrimaryMaterial = MaterialColor(
     0xFF2B1A64,
     <int, Color>{
-       50: Color(0xFFE3F2FD),
+      50: Color(0xFFE3F2FD),
       100: Color(0xFFBBDEFB),
       200: Color(0xFF90CAF9),
       300: Color(0xFF64B5F6),
@@ -26,7 +26,6 @@ class BrandColors {
   static const Color quickactionsBg = Color(0xFFF6F7FF);
 
   static const Color colorGrey = Color(0xFFF1F1F5);
-
 
   static const Color colorSkipButton = Color(0xFF536AFE);
 
