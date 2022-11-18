@@ -1,3 +1,5 @@
+import 'package:kochure_quiz_app/utils/shared_prefs.dart';
+
 import '../../app.dart';
 
 class ScoreClassNotifier extends StateNotifier<double> {
@@ -5,6 +7,7 @@ class ScoreClassNotifier extends StateNotifier<double> {
 
   void increaseScore(double newScore) {
     state = state + newScore;
+    SharedPrefHelper.setScoreTotal(id: state);
   }
 }
 
