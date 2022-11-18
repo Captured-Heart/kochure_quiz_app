@@ -5,7 +5,7 @@ import 'package:kochure_quiz_app/utils/connectivity.dart';
 import '../../../app.dart';
 
 class AuthScreenDesktop extends ConsumerStatefulWidget {
-  static const String routeName = 'login_screen';
+  static const String routeName = 'login';
 
   const AuthScreenDesktop({Key? key}) : super(key: key);
 

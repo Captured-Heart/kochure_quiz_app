@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:kochure_quiz_app/ScoreBoard/leaderboard_screen.dart';
 import 'package:kochure_quiz_app/firebase_options.dart';
 import 'package:kochure_quiz_app/utils/shared_prefs.dart';
 
@@ -48,6 +49,8 @@ class MyApp extends StatelessWidget {
 
               case QuizScreenDesktop.routeName:
                 return const QuizScreenDesktop();
+              case LeaderScoreBoardScreen.routeName:
+                return const LeaderScoreBoardScreen();
               default:
                 return const OnboardScreenDesktop();
             }

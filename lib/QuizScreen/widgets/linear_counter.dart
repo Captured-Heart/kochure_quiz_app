@@ -19,11 +19,11 @@ Align linearSecsCounter(Size size, double time1) {
             borderRadius: BorderRadius.circular(30),
             child: LinearProgressIndicator(
               minHeight: 40,
-              value: time1 / 5,
+              value: time1 / 10,
               // snapshot.data! / 10,
               valueColor: AlwaysStoppedAnimation<Color>(
-                time1 < 3
-                    ? time1 < 2
+                time1 < 7
+                    ? time1 < 4
                         ? BrandColors.colorPink
                         : BrandColors.colorOrange
                     : BrandColors.colorPrimaryDark,
