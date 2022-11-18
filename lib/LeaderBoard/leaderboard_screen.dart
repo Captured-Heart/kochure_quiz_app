@@ -9,7 +9,12 @@ class LeaderBoard extends StatefulWidget {
   @override
   State<LeaderBoard> createState() => _LeaderBoardState();
 }
+int startTimeStamp = DateTime.now().millisecondsSinceEpoch;
+void endGame(){
+  int endTimeStamp = DateTime.now().millisecondsSinceEpoch;
 
+  int score = endTimeStamp - startTimeStamp;
+}
 class _LeaderBoardState extends State<LeaderBoard> {
   @override
   Widget build(BuildContext context) {
