@@ -43,17 +43,36 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
                         .update((state) => true);
                   },
                   build: (context, time1) {
+                    double scoreFromCounter() {
+                      if (time1 == 5) {
+                        return 100;
+                      } else if (time1 == 4) {
+                        return 80;
+                      } else if (time1 == 3) {
+                        return 55;
+                      } else if (time1 == 2) {
+                        return 25;
+                      } else if (time1 == 1) {
+                        return 7;
+                      } else {
+                        return 0;
+                      }
+                    }
+
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: size.height * 0.03,
+                          height: size.height * 0.005,
                         ),
                         // Timer
                         // const TimerCard(),
                         linearSecsCounter(
                           size,
                           time1,
+                        ),
+                        SizedBox(
+                          height: size.height * 0.01,
                         ),
                         Align(
                           alignment: Alignment.centerRight,
@@ -64,21 +83,20 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
                               style: const TextStyle(
                                 color: BrandColors.colorBackground,
                               ),
-                              textScaleFactor: 3,
+                              textScaleFactor:
+                                  Responsive.isDesktop(context) ? 3 : 1.5,
                             ),
                           ),
                         ),
 
-                        KochureButton(
-                            onTap: () {
-                              ref
-                                  .read(scoreClassNotifierProvider.notifier)
-                                  .increaseScore(30);
-                            },
-                            text: 'add'),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        // KochureButton(
+                        //     onTap: () {
+                        //       //TODO: ADD SCORE HERE
+                        //       ref
+                        //           .read(scoreClassNotifierProvider.notifier)
+                        //           .increaseScore(30);
+                        //     },
+                        //     text: 'add'),
 
                         Text.rich(
                           TextSpan(
@@ -128,6 +146,7 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
                                     //     :
                                     QuestionCard(
                                   questionIndex: index,
+                                  scoreFromCounter: scoreFromCounter(),
                                 ),
                               );
                             },
@@ -152,6 +171,11 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
                                   onTap: () {
                                     ref.invalidate(onTapIndexProvider);
                                     ref.invalidate(correctAnswerProvider);
+                                    ref
+                                        .read(
+                                            checkIfClickedPageProvider.notifier)
+                                        .update((state) =>
+                                            ref.watch(pageIndexProvider));
                                     ref
                                         .read(pageViewControllerProvider)
                                         .jumpToPage(no + 1);

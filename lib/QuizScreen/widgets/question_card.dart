@@ -1,6 +1,8 @@
+import 'dart:developer';
+
+import 'package:kochure_quiz_app/utils/top_snack_bar.dart';
 
 import '../../app.dart';
-import '../model/scores_model.dart';
 
 final onTapIndexProvider = StateProvider<int>((ref) {
   return 5;
@@ -16,23 +18,48 @@ final scoreProvider = Provider<int>((ref) {
   return 0;
 });
 
+final loadingProvider = StateProvider<bool>((ref) {
+  return false;
+});
+
+final checkIfClickedPageProvider = StateProvider<int>((ref) {
+  return 0;
+});
+
 class QuestionCard extends ConsumerWidget {
   QuestionCard({
     Key? key,
     required this.questionIndex,
+    required this.scoreFromCounter,
     this.option,
   }) : super(key: key);
   final int questionIndex;
   final QuestionBank question = QuestionBank();
   final Widget? option;
+  final double scoreFromCounter;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final onTapIndex = ref.watch(onTapIndexProvider);
     final isCorrect = ref.watch(isCorrectProvider);
     final pageIndex = ref.watch(pageIndexProvider);
     final correctAnswer = ref.watch(correctAnswerProvider);
-    final double scores = ref.watch(scoreClassNotifierProvider);
+    final checkIfClicked = ref.watch(checkIfClickedPageProvider);
 
+    ref.listen(
+      checkIfClickedPageProvider,
+      (previous, next) {
+        log('next: $next');
+        log('prev: $previous');
+        log('pageIndex: $pageIndex');
+        if (previous! > pageIndex) {
+          topSnack(
+            context: context,
+            message: 'Already answered, Please go to the next question',
+            isError: true,
+          );
+        }
+      },
+    );
     return Container(
       clipBehavior: Clip.hardEdge,
       width: Responsive.isMobile(context)
@@ -93,11 +120,21 @@ class QuestionCard extends ConsumerWidget {
                             questionBank: question,
                             questionIndex: pageIndex,
                             onTap: () {
+                              // starts the loading process
+                              ref
+                                  .read(loadingProvider.notifier)
+                                  .update((state) => true);
+
+//! here i am checking if this page has been clicked first time, remember to update it to current screen on next
+                              ref
+                                  .read(checkIfClickedPageProvider.notifier)
+                                  .update((state) => state++);
+                              //! pauses the counter
+                              ref.read(countDownControllerProvider).pause();
                               //! updates the index of option tapped
                               ref
                                   .read(onTapIndexProvider.notifier)
                                   .update((state) => index);
-
                               //! updates the correct answer
                               ref.read(correctAnswerProvider.notifier).update(
                                   (state) => (question
@@ -105,19 +142,18 @@ class QuestionCard extends ConsumerWidget {
                                               .answerId! +
                                           1)
                                       .toString());
-                              //! pauses the counter
-                              ref.read(countDownControllerProvider).pause();
-                              //TODO: LOADING PROVIDER SHOULD BE INITITATED HERE
-
 
                               //! if answerID matches the options index
                               if (answerId == index) {
-                                // ref
-                                //     .read(onTapIndexProvider.notifier)
-                                //     .update((state) => index);
                                 ref
                                     .read(isCorrectProvider.notifier)
                                     .update((state) => true);
+                                //! i only add up the score if the answer is correct
+                                if (checkIfClicked > pageIndex) {
+                                  ref
+                                      .read(scoreClassNotifierProvider.notifier)
+                                      .increaseScore(scoreFromCounter);
+                                }
                               } else {
                                 ref
                                     .read(isCorrectProvider.notifier)

@@ -16,9 +16,7 @@ export 'package:device_preview/device_preview.dart'
     hide basicLocaleListResolution;
 export 'package:timer_count_down/timer_controller.dart';
 
-
 //!SCREENS
-
 
 //? [DESKTOP]
 export '/desktop_main.dart';
@@ -48,5 +46,3 @@ export 'AuthScreen/widgets/reg_textfield.dart';
 //? [UTILS/WIDGETS]
 export './utils/widgets/confetti_widget.dart';
 export './utils/widgets/confetti_star.dart';
-
-

@@ -1,13 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:kochure_quiz_app/firebase_options.dart';
 
 import 'app.dart';
 
-void main() {
-  runApp(ProviderScope(
-    child: DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => const MyApp(),
-    ),
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  runApp(const ProviderScope(
+    child:
+    //  DevicePreview(
+    //   enabled: !kReleaseMode,
+    //   builder: (context) => 
+       MyApp(),
+    // ),
   ));
 }
 
@@ -20,8 +27,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Kochure Quiz',
       debugShowCheckedModeBanner: false,
-      useInheritedMediaQuery: true,
-      builder: DevicePreview.appBuilder,
+      // useInheritedMediaQuery: true,
+      // builder: DevicePreview.appBuilder,
       theme: ThemeData(
           primarySwatch: createMaterialColor(BrandColors.colorPrimary)),
       home: const OnboardScreenDesktop(),
