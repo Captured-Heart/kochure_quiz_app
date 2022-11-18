@@ -2,16 +2,17 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-var url = 'https://dev-quiz.herokuapp.com';
+var url = "https://dev-quiz.herokuapp.com/users";
 
 class RequestHelper {
   static Future<dynamic> postRequest(Map map, String api) async {
-    var api = '$url/user';
+    //var api = '$url/user';
 
     try {
       http.Response response = await http.post(Uri.parse(api), body: map);
 
       print("response.statusCode: ${response.statusCode}");
+      // print ('mnad : $map');
 
       if (response.statusCode == 200) {
         String data = response.body;

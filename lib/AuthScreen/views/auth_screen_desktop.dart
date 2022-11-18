@@ -1,4 +1,5 @@
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:kochure_quiz_app/utils/networking.dart';
 
 import '../../../app.dart';
 
@@ -28,6 +29,7 @@ class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: QuizAppBackground(
           size: size,
@@ -104,6 +106,7 @@ class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
                           RequiredValidator(
                             errorText: 'field is required',
                           ),
+                          MinLengthValidator(10, errorText: '11 characters'),
                           PatternValidator(
                             r'^[0-9\-\+]{9,15}$',
                             errorText: 'provide a valid phone number',
@@ -113,10 +116,24 @@ class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
                       KochureButton(
                         text: 'Start Quiz',
                         width: size.width,
-                        onTap: () {
-                          // if (signUpKey.currentState!.validate()) {}
+                        onTap: () async {
+                          if (signUpKey.currentState!.validate()) {
+                            Map map = {
+                              'email': emailController.text,
+                              'phone': phoneNoController.text,
+                              'name': usernameController.text,
+                              'clearance': '',
+                              'ID': ''
+                            };
+                            var responseEmail = await RequestHelper.postRequest(
+                                map, "https://dev-quiz.herokuapp.com/users");
+                            print('veeee $responseEmail');
+                            RequestHelper.postRequest(
+                                    map, "https://dev-quiz.herokuapp.com/users")
+                                .whenComplete(() => pushNamed(
+                                    context, QuizScreenDesktop.routeName));
+                          }
                           //TODO: ADD RULES OF THE GAME HERE
-                          pushNamed(context, QuizScreenDesktop.routeName);
                         },
                       ),
                     ]
@@ -140,6 +157,3 @@ class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
     );
   }
 }
-
-
-
