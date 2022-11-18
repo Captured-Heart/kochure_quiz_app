@@ -65,23 +65,28 @@ class _ScoreBoardState extends State<ScoreBoard> {
                   height: 20,
                 ),
                 StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance.collection('').where('', ).orderBy('', descending: true).snapshots(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return ListView.builder(itemBuilder: (context, index) {
-                        return RatingsBody(
-                          rankingIndex: index + 1,
-                          user: '',
-                          points: 0,
-                        );
-                      });
-                    } else {
-                      i++;
-                    }
-                    //You can edit this later
-                    return Container();
-                  }
-                ),
+                    stream: FirebaseFirestore.instance
+                        .collection('')
+                        .where(
+                          '',
+                        )
+                        .orderBy('', descending: true)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(itemBuilder: (context, index) {
+                          return RatingsBody(
+                            rankingIndex: index + 1,
+                            user: '',
+                            points: 0,
+                          );
+                        });
+                      } else {
+                        i++;
+                      }
+                      //You can edit this later
+                      return Container();
+                    }),
               ],
             ),
           ),
