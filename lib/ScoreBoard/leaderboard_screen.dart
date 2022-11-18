@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../app.dart';
 import '../utils/widgets/ratings_body.dart';
 
