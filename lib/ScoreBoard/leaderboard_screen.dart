@@ -1,21 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../QuizScreen/widgets/quiz_background.dart';
 import '../utils/widgets/ratings_body.dart';
 
-class LeaderBoard extends StatefulWidget {
-  const LeaderBoard({Key? key}) : super(key: key);
+class ScoreBoard extends StatefulWidget {
+  const ScoreBoard({Key? key}) : super(key: key);
 
   @override
-  State<LeaderBoard> createState() => _LeaderBoardState();
+  State<ScoreBoard> createState() => _ScoreBoardState();
 }
-int startTimeStamp = DateTime.now().millisecondsSinceEpoch;
-void endGame(){
-  int endTimeStamp = DateTime.now().millisecondsSinceEpoch;
+// int startTimeStamp = DateTime.now().millisecondsSinceEpoch;
+// void endGame(){
+//   int endTimeStamp = DateTime.now().millisecondsSinceEpoch;
+//
+//   int score = endTimeStamp - startTimeStamp;
+// }
 
-  int score = endTimeStamp - startTimeStamp;
-}
-class _LeaderBoardState extends State<LeaderBoard> {
+class _ScoreBoardState extends State<ScoreBoard> {
+  int i = 0;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -60,13 +64,24 @@ class _LeaderBoardState extends State<LeaderBoard> {
                 const SizedBox(
                   height: 20,
                 ),
-                ListView.builder(itemBuilder: (context, index) {
-                  return RatingsBody(
-                    rankingIndex: index + 1,
-                    user: '',
-                    points: 0,
-                  );
-                }),
+                StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance.collection('').where('', ).orderBy('', descending: true).snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(itemBuilder: (context, index) {
+                        return RatingsBody(
+                          rankingIndex: index + 1,
+                          user: '',
+                          points: 0,
+                        );
+                      });
+                    } else {
+                      i++;
+                    }
+                    //You can edit this later
+                    return Container();
+                  }
+                ),
               ],
             ),
           ),
