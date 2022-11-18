@@ -1,23 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 
-import '../QuizScreen/widgets/quiz_background.dart';
+import '../app.dart';
 import '../utils/widgets/ratings_body.dart';
 
-class ScoreBoard extends StatefulWidget {
+class ScoreBoard extends ConsumerStatefulWidget {
   const ScoreBoard({Key? key}) : super(key: key);
 
   @override
-  State<ScoreBoard> createState() => _ScoreBoardState();
+  ScoreBoardState createState() => ScoreBoardState();
 }
-// int startTimeStamp = DateTime.now().millisecondsSinceEpoch;
-// void endGame(){
-//   int endTimeStamp = DateTime.now().millisecondsSinceEpoch;
-//
-//   int score = endTimeStamp - startTimeStamp;
-// }
 
-class _ScoreBoardState extends State<ScoreBoard> {
+class ScoreBoardState extends ConsumerState<ScoreBoard> {
   int i = 0;
 
   @override

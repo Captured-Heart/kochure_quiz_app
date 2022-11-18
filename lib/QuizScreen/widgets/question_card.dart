@@ -2,9 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kochure_quiz_app/QuizScreen/model/quiz_model.dart';
-import 'package:kochure_quiz_app/AuthScreen/services/auth_services.dart';
 import 'package:kochure_quiz_app/utils/shared_prefs.dart';
-import 'package:kochure_quiz_app/utils/top_snack_bar.dart';
 
 import '../../AuthScreen/services/post_auth_firebase.dart';
 import '../../app.dart';
@@ -123,7 +121,9 @@ class QuestionCard extends ConsumerWidget {
                                   ).toJson();
 
                                   inspect(quizMap);
-
+                                  await updateFinalScore(
+                                    SharedPrefHelper.getScoreTotal(),
+                                  );
                                   await postParticipantsScore(ref, quizMap)
                                       .whenComplete(() {
                                     ref
@@ -144,7 +144,9 @@ class QuestionCard extends ConsumerWidget {
                                   ).toJson();
 
                                   inspect(quizMap);
-
+                                  await updateFinalScore(
+                                    SharedPrefHelper.getScoreTotal(),
+                                  );
                                   await postParticipantsScore(ref, quizMap)
                                       .whenComplete(() {
                                     ref

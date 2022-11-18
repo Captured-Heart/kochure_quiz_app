@@ -21,7 +21,6 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
     final size = MediaQuery.of(context).size;
     final no = ref.watch(pageIndexProvider);
     final pageController = ref.watch(pageViewControllerProvider);
-    final showButton = ref.watch(showButtonProvider);
     final countController = ref.watch(countDownControllerProvider);
     final double scores = ref.watch(scoreClassNotifierProvider);
     // final timer = ref.watch(timerProvider);
@@ -49,7 +48,6 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
                 seconds: 5,
                 controller: countController,
                 onFinished: () async {
-                 
                   Map quizMap = QuizModel(
                     userId: SharedPrefHelper.getUserID(),
                     score: 0,
@@ -57,8 +55,10 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
                     questionNo: ref.watch(pageIndexProvider) + 1,
                     createdAt: Timestamp.now(),
                   ).toJson();
+                  await updateFinalScore(
+                    SharedPrefHelper.getScoreTotal(),
+                  );
                   await postParticipantsScore(ref, quizMap).whenComplete(() {
-                    
                     ref.read(pageViewControllerProvider).jumpToPage(no + 1);
                   });
                   // ref.invalidate(countDownControllerProvider);
