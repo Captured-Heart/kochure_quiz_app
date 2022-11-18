@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 
-import 'LeaderBoard/leaderboard_screen.dart';
 import 'app.dart';
 
 void main() {
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       theme: ThemeData(
           primarySwatch: createMaterialColor(BrandColors.colorPrimary)),
-      home: const LeaderBoard(),//OnboardScreenDesktop(),
+      home: const OnboardScreenDesktop(),
       onGenerateTitle: (context) => 'Kochure Quiz App',
       onGenerateRoute: (RouteSettings routeSettings) {
         return MaterialPageRoute<void>(
