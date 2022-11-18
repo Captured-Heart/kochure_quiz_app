@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Kochure Quiz',
+      
       debugShowCheckedModeBanner: false,
       // useInheritedMediaQuery: true,
       // builder: DevicePreview.appBuilder,
