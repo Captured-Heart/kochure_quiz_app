@@ -46,3 +46,7 @@ export 'AuthScreen/widgets/reg_textfield.dart';
 //? [UTILS/WIDGETS]
 export './utils/widgets/confetti_widget.dart';
 export './utils/widgets/confetti_star.dart';
+
+
+//? [LEADERBOARD SCREEN]
+export './ScoreBoard/services/fetch_leaderboard.dart';

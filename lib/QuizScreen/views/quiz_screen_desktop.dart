@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kochure_quiz_app/ScoreBoard/leaderboard_screen.dart';
 import 'package:kochure_quiz_app/utils/top_snack_bar.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
@@ -45,7 +46,7 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
           child: Container(
             padding: const EdgeInsets.all(20),
             child: Countdown(
-                seconds: 5,
+                seconds: 10,
                 controller: countController,
                 onFinished: () async {
                   Map quizMap = QuizModel(
@@ -65,16 +66,26 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
                 },
                 build: (context, time1) {
                   double scoreFromCounter() {
-                    if (time1 == 5) {
+                    if (time1 == 10) {
                       return 100;
-                    } else if (time1 == 4) {
+                    } else if (time1 == 9) {
+                      return 90;
+                    } else if (time1 == 8) {
                       return 80;
+                    } else if (time1 == 7) {
+                      return 70;
+                    } else if (time1 == 6) {
+                      return 60;
+                    } else if (time1 == 5) {
+                      return 50;
+                    } else if (time1 == 4) {
+                      return 40;
                     } else if (time1 == 3) {
-                      return 55;
+                      return 30;
                     } else if (time1 == 2) {
-                      return 25;
+                      return 20;
                     } else if (time1 == 1) {
-                      return 7;
+                      return 10;
                     } else {
                       return 0;
                     }
