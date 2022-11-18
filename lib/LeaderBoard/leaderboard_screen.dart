@@ -55,11 +55,13 @@ class _LeaderBoardState extends State<LeaderBoard> {
                 const SizedBox(
                   height: 20,
                 ),
-                const RatingsBody(
-                  rank: '',
-                  user: '',
-                  points: 0,
-                )
+                ListView.builder(itemBuilder: (context, index) {
+                  return RatingsBody(
+                    rankingIndex: index + 1,
+                    user: '',
+                    points: 0,
+                  );
+                }),
               ],
             ),
           ),

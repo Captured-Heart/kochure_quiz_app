@@ -1,11 +1,12 @@
 import '../../app.dart';
 
 class RatingsBody extends StatelessWidget {
-  final String rank, user;
+  final String user;
   final double points;
+  final int rankingIndex;
 
   const RatingsBody(
-      {Key? key, required this.rank, required this.user, required this.points})
+      {Key? key, required this.rankingIndex, required this.user, required this.points})
       : super(key: key);
 
   @override
@@ -14,11 +15,11 @@ class RatingsBody extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          rank,
-          style: const TextStyle(color: Colors.white),
+          rankingIndex.toString(),
+          style: const TextStyle(color: Colors.white, fontSize: 20),
         ),
-        Text(user, style: const TextStyle(color: Colors.white)),
-        Text(points.toString(), style: const TextStyle(color: Colors.white,))
+        Text(user, style: const TextStyle(color: Colors.white, fontSize: 20)),
+        Text(points.toString(), style: const TextStyle(color: Colors.white, fontSize: 20))
       ],
     );
   }
