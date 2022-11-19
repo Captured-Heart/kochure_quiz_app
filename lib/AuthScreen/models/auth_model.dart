@@ -6,7 +6,7 @@ class AuthModel {
   String? username;
   Timestamp? createdAt;
   String? email;
-  double? scoreTotal;
+  num? scoreTotal;
 
   AuthModel({
     required this.userId,
@@ -23,7 +23,7 @@ class AuthModel {
         username: json['username'] as String?,
         createdAt: json['createdAt'] as Timestamp?,
         email: json['email'] as String?,
-        scoreTotal: json['scoreTotal'] as double?,
+        scoreTotal: json['scoreTotal'] as num?,
       );
 
   Map<String, dynamic> toJson() => {

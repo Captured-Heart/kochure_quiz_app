@@ -1,3 +1,5 @@
+import 'package:kochure_quiz_app/QuizScreen/views/quiz_rules_screen.dart';
+import 'package:kochure_quiz_app/QuizScreen/views/quiz_summary_screen.dart';
 import 'package:kochure_quiz_app/utils/shared_prefs.dart';
 
 import '../../../app.dart';

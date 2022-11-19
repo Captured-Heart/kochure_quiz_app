@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -27,9 +28,9 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
-  <title>kochure_quiz_app</title>
+  <title>Kochure_Quiz_App</title>
   <link rel="manifest" href="manifest.json">
 
   <script>
@@ -38,21 +39,88 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+  <style>
+    body {background-color: #292828;}
+  
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+  
+      .loader {
+        border: 16px solid #1D38E4;
+        border-radius: 50%;
+        border: 15px solid;
+        border-top: 16px solid #1D38E4;
+        border-right: 16px solid #292828;
+        border-bottom: 16px solid #1D38E4;
+        border-left: 16px solid #292828;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+  
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+  
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
 </head>
-<body>
+
+<body style="overflow: hidden">
+  <div id="loading_indicator" class="loading">
+    <div class="loader"></div>
+   </div>
   <script>
-    window.addEventListener('load', function(ev) {
+    window.addEventListener('load', function (ev) {
+      var loading = document.querySelector('#loading_indicator');
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         }
-      }).then(function(engineInitializer) {
+      }).then(function (engineInitializer) {
+    loading.classList.add('loading');
+
         return engineInitializer.initializeEngine();
-      }).then(function(appRunner) {
+      }).then(function (appRunner) {
+    loading.classList.add('loading');
+
         return appRunner.runApp();
       });
     });
   </script>
+  <script>
+  window.onload = function () {
+  setTimeout(function () {
+  var loadingIndicator = document.getElementById("loading_indicator");
+  if (loadingIndicator) {
+  loadingIndicator.remove();
+  }
+  }, 200);
+  };
+</script>
 </body>
+
 </html>

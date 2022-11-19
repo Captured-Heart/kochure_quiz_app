@@ -17,6 +17,8 @@ class QuizScreenDesktop extends ConsumerStatefulWidget {
 }
 
 class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
+  final QuestionBank question = QuestionBank();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -130,7 +132,8 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
                           ),
                           children: [
                             TextSpan(
-                              text: "/11",
+                              text: '/${question.questionBank.length}',
+                              // "/11",
                               style: TextStyle(
                                 fontSize:
                                     Responsive.isMobile(context) ? 18 : 25,
@@ -160,7 +163,7 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
                             ref.read(countDownControllerProvider).restart();
                           },
                           controller: pageController,
-                          itemCount: 11,
+                          itemCount: question.questionBank.length,
                           itemBuilder: (context, index) {
                             return Center(
                               child: QuestionCard(

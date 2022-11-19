@@ -2,10 +2,12 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kochure_quiz_app/QuizScreen/model/quiz_model.dart';
+import 'package:kochure_quiz_app/QuizScreen/widgets/quiz_options_answers.dart';
 import 'package:kochure_quiz_app/utils/shared_prefs.dart';
 
 import '../../AuthScreen/services/post_auth_firebase.dart';
 import '../../app.dart';
+import '../views/quiz_summary_screen.dart';
 
 // final correctAnswerProvider = StateProvider<String>((ref) {
 //   return '';
@@ -24,12 +26,14 @@ class QuestionCard extends ConsumerWidget {
     Key? key,
     required this.questionIndex,
     required this.scoreFromCounter,
+    this.isSummary,
     this.option,
   }) : super(key: key);
   final int questionIndex;
   final QuestionBank question = QuestionBank();
   final Widget? option;
   final double scoreFromCounter;
+  final bool? isSummary;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pageIndex = ref.watch(pageIndexProvider);
@@ -93,80 +97,88 @@ class QuestionCard extends ConsumerWidget {
                         width: 20,
                       ),
                       Expanded(
-                        child: option ??
+                        child:
+                            // isSummary == true
+                            //     ? QuizOptionsAnswers(
+                            //         question: question.questionBank[questionIndex]
+                            //             .options![index],
+                            //         index: index,
+                            //         questionBank: question,
+                            //       )
+                            //     :
+
                             QuizOptions(
-                              question: question
-                                  .questionBank[questionIndex].options![index],
-                              index: index,
-                              questionBank: question,
-                              onTap: () async {
-                                //! pauses the counter
-                                ref.read(countDownControllerProvider).pause();
+                          question: question
+                              .questionBank[questionIndex].options![index],
+                          index: index,
+                          questionBank: question,
+                          onTap: () async {
+                            //! pauses the counter
+                            ref.read(countDownControllerProvider).pause();
+                            ref
+                                .read(loadingProvider.notifier)
+                                .update((state) => true);
+                            if (answerId == index) {
+                              log('answers are correct');
+
+                              ref
+                                  .read(scoreClassNotifierProvider.notifier)
+                                  .increaseScore(scoreFromCounter);
+                              Map quizMap = QuizModel(
+                                userId: SharedPrefHelper.getUserID(),
+                                score: scoreFromCounter,
+                                scoreTotal: SharedPrefHelper.getScoreTotal(),
+                                questionNo: pageIndex + 1,
+                                createdAt: Timestamp.now(),
+                              ).toJson();
+
+                              inspect(quizMap);
+                              await updateFinalScore(
+                                SharedPrefHelper.getScoreTotal(),
+                              );
+                              await postParticipantsScore(ref, quizMap)
+                                  .whenComplete(() {
                                 ref
                                     .read(loadingProvider.notifier)
-                                    .update((state) => true);
-                                if (answerId == index) {
-                                  log('answers are correct');
+                                    .update((state) => false);
+                                ref
+                                    .read(pageViewControllerProvider)
+                                    .jumpToPage(pageIndex + 1);
+                              });
+                            } else {
+                              Map quizMap = QuizModel(
+                                userId: SharedPrefHelper.getUserID(),
+                                score: 0,
+                                scoreTotal: SharedPrefHelper.getScoreTotal(),
+                                questionNo: pageIndex + 1,
+                                createdAt: Timestamp.now(),
+                              ).toJson();
 
-                                  ref
-                                      .read(scoreClassNotifierProvider.notifier)
-                                      .increaseScore(scoreFromCounter);
-                                  Map quizMap = QuizModel(
-                                    userId: SharedPrefHelper.getUserID(),
-                                    score: scoreFromCounter,
-                                    scoreTotal:
-                                        SharedPrefHelper.getScoreTotal(),
-                                    questionNo: pageIndex + 1,
-                                    createdAt: Timestamp.now(),
-                                  ).toJson();
+                              inspect(quizMap);
+                              await updateFinalScore(
+                                SharedPrefHelper.getScoreTotal(),
+                              );
+                              await postParticipantsScore(ref, quizMap)
+                                  .whenComplete(() {
+                                ref
+                                    .read(loadingProvider.notifier)
+                                    .update((state) => false);
+                                ref
+                                    .read(pageViewControllerProvider)
+                                    .jumpToPage(pageIndex + 1);
+                              });
+                            }
 
-                                  inspect(quizMap);
-                                  await updateFinalScore(
-                                    SharedPrefHelper.getScoreTotal(),
-                                  );
-                                  await postParticipantsScore(ref, quizMap)
-                                      .whenComplete(() {
-                                    ref
-                                        .read(loadingProvider.notifier)
-                                        .update((state) => false);
-                                    ref
-                                        .read(pageViewControllerProvider)
-                                        .jumpToPage(pageIndex + 1);
-                                  });
-                                } else {
-                                  Map quizMap = QuizModel(
-                                    userId: SharedPrefHelper.getUserID(),
-                                    score: 0,
-                                    scoreTotal:
-                                        SharedPrefHelper.getScoreTotal(),
-                                    questionNo: pageIndex + 1,
-                                    createdAt: Timestamp.now(),
-                                  ).toJson();
-
-                                  inspect(quizMap);
-                                  await updateFinalScore(
-                                    SharedPrefHelper.getScoreTotal(),
-                                  );
-                                  await postParticipantsScore(ref, quizMap)
-                                      .whenComplete(() {
-                                    ref
-                                        .read(loadingProvider.notifier)
-                                        .update((state) => false);
-                                    ref
-                                        .read(pageViewControllerProvider)
-                                        .jumpToPage(pageIndex + 1);
-                                  });
-                                }
-
-                                if (pageIndex == 10) {
-                                  updateFinalScore(
-                                    SharedPrefHelper.getScoreTotal(),
-                                  ).whenComplete(
-                                    () => SharedPrefHelper.clearScoreTotal(),
-                                  );
-                                }
-                              },
-                            ),
+                            if (pageIndex + 1 == question.questionBank.length) {
+                               // ignore: use_build_context_synchronously
+                               pushNamed(
+                                      context, QuizSummaryScreen.routeName);
+                          await    updateFinalScore(
+                                SharedPrefHelper.getScoreTotal(),
+                              );
+                            }
+                          },
+                        ),
                       ),
                     ],
                   );

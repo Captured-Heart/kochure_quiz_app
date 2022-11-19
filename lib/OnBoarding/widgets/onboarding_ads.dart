@@ -23,7 +23,7 @@ class OnBoardingScreenAds extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          color: BrandColors.colorBackground,
+          // color: BrandColors.colorBackground,
           // elevation: 4,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
@@ -31,6 +31,7 @@ class OnBoardingScreenAds extends StatelessWidget {
               imgUrl,
               height: size.height,
               width: size.width,
+              
               fit: BoxFit.fill,
             ),
           )),

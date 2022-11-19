@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:kochure_quiz_app/AuthScreen/models/auth_model.dart';
 import 'package:kochure_quiz_app/AuthScreen/services/post_auth_firebase.dart';
+import 'package:kochure_quiz_app/QuizScreen/views/quiz_rules_screen.dart';
 import 'package:kochure_quiz_app/utils/shared_prefs.dart';
 import 'package:kochure_quiz_app/utils/top_snack_bar.dart';
 
@@ -38,7 +39,7 @@ class AuthenticationServices {
         },
       );
       // ignore: use_build_context_synchronously
-      pushNamed(context, QuizScreenDesktop.routeName);
+      pushNamed(context, QuizRulesScreen.routeName);
       Map map = AuthModel(
         username: username,
         phoneNo: phoneNo,

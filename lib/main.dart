@@ -1,4 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:kochure_quiz_app/QuizScreen/views/quiz_rules_screen.dart';
+import 'package:kochure_quiz_app/QuizScreen/views/quiz_summary_screen.dart';
 import 'package:kochure_quiz_app/ScoreBoard/leaderboard_screen.dart';
 import 'package:kochure_quiz_app/firebase_options.dart';
 import 'package:kochure_quiz_app/utils/shared_prefs.dart';
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Kochure Quiz',
-      
+
       debugShowCheckedModeBanner: false,
       // useInheritedMediaQuery: true,
       // builder: DevicePreview.appBuilder,
@@ -44,10 +46,12 @@ class MyApp extends StatelessWidget {
                 return const DesktopMain();
               case AuthScreenDesktop.routeName:
                 return const AuthScreenDesktop();
-
               case OnboardScreenDesktop.routeName:
                 return const OnboardScreenDesktop();
-
+              case QuizRulesScreen.routeName:
+                return const QuizRulesScreen();
+              case QuizSummaryScreen.routeName:
+                return  QuizSummaryScreen();
               case QuizScreenDesktop.routeName:
                 return const QuizScreenDesktop();
               case LeaderScoreBoardScreen.routeName:

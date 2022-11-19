@@ -68,7 +68,7 @@ class ScoreBoardState extends ConsumerState<LeaderScoreBoardScreen> {
                             return RatingsBody(
                               rankingIndex: index + 1,
                               user: leader.username!,
-                              points: leader.scoreTotal!,
+                              points: leader.scoreTotal!.toDouble(),
                             );
                           });
                     },
