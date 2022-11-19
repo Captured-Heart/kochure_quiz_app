@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kochure_quiz_app/QuizScreen/views/quiz_summary_screen.dart';
 import 'package:kochure_quiz_app/ScoreBoard/leaderboard_screen.dart';
 import 'package:kochure_quiz_app/utils/top_snack_bar.dart';
 import 'package:timer_count_down/timer_count_down.dart';
@@ -153,7 +154,7 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
                       Expanded(
                         child: PageView.builder(
                           physics: const NeverScrollableScrollPhysics(),
-                          onPageChanged: (value) {
+                          onPageChanged: (value) async {
                             ref
                                 .read(pageIndexProvider.notifier)
                                 .update((state) => value);
@@ -161,6 +162,14 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
                                 .read(showButtonProvider.notifier)
                                 .update((state) => false);
                             ref.read(countDownControllerProvider).restart();
+
+                            if (value + 1 == question.questionBank.length) {
+                              // ignore: use_build_context_synchronously
+                              pushNamed(context, QuizSummaryScreen.routeName);
+                              await updateFinalScore(
+                                SharedPrefHelper.getScoreTotal(),
+                              );
+                            }
                           },
                           controller: pageController,
                           itemCount: question.questionBank.length,

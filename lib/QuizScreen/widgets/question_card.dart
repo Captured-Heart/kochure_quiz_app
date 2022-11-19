@@ -169,14 +169,7 @@ class QuestionCard extends ConsumerWidget {
                               });
                             }
 
-                            if (pageIndex + 1 == question.questionBank.length) {
-                               // ignore: use_build_context_synchronously
-                               pushNamed(
-                                      context, QuizSummaryScreen.routeName);
-                          await    updateFinalScore(
-                                SharedPrefHelper.getScoreTotal(),
-                              );
-                            }
+                           
                           },
                         ),
                       ),

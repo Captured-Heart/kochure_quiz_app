@@ -151,7 +151,7 @@ class QuizSummaryScreenState extends ConsumerState<QuizSummaryScreen> {
                   textScaleFactor: Responsive.isDesktop(context) ? 3 : 1.5,
                 ),
                 CircleAvatar(
-                  radius: 23,
+                  radius: 35,
                   backgroundColor: Colors.purple[300],
                   child: Text(
                     score,
