@@ -1,12 +1,14 @@
+import 'package:kochure_quiz_app/QuizScreen/services/fetch_quiz_switch.dart';
 import 'package:kochure_quiz_app/app.dart';
 
-class QuizRulesScreen extends StatelessWidget {
+class QuizRulesScreen extends ConsumerWidget {
   static const String routeName = 'instructions';
   const QuizRulesScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
+    final quizSwitch = ref.watch(fetchQuizSwitchProvider);
     return Scaffold(
       body: QuizAppBackground(
         size: size,
@@ -26,11 +28,11 @@ class QuizRulesScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: ListView(
-                shrinkWrap: true,
+                  shrinkWrap: true,
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   // mainAxisAlignment: MainAxisAlignment.center,
                   // mainAxisSize: MainAxisSize.min,
-                  children: [
+                  children: <Widget>[
                     const Text(
                       '🔔🔔 Game Rules 📢.',
                       style: TextStyle(
@@ -58,14 +60,43 @@ class QuizRulesScreen extends StatelessWidget {
                       '5. Please have it in mind that, this game tests for speed and accuracy🚀.',
                       style: TextStyle(fontSize: 15, color: Colors.white),
                     ),
+                    //TODO: ADD THE SWITCH BUTTON HERE
+
+                    // quizSwitch.when(
+                    //     data: (data) {
+                    //       if (data.single.generalTimeSwitch == 0) {
+                    //         return Center(
+                    //           child: KochureButton(
+                    //               width: size.width * 0.5,
+                    //               onTap: () {},
+                    //               text: 'Starting Soon...'),
+                    //         );
+                    //       } else {
+                    //         return Center(
+                    //           child: KochureButton(
+                    //               width: size.width * 0.5,
+                    //               onTap: () {
+                    //                 pushNamed(
+                    //                     context, QuizScreenDesktop.routeName);
+                    //               },
+                    //               text: 'Start quiz'),
+                    //         );
+                    //       }
+                    //     },
+                    //     error: (e, _) => Center(
+                    //           child: Text(e.toString()),
+                    //         ),
+                    //     loading: () => const Center(
+                    //           child: CircularProgressIndicator(),
+                    //         ))
                     Center(
                       child: KochureButton(
-                        width: size.width * 0.5,
+                          width: size.width * 0.5,
                           onTap: () {
                             pushNamed(context, QuizScreenDesktop.routeName);
                           },
                           text: 'Start quiz'),
-                    )
+                    ),
                   ]
                       .expand(
                         (element) => [

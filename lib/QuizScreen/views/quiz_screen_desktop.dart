@@ -213,7 +213,7 @@ static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
                                 .update((state) => false);
                             ref.read(countDownControllerProvider).restart();
 
-                            if (value + 2 == question.questionBank.length) {
+                            if (value+1 == question.questionBank.length) {
                               // ignore: use_build_context_synchronously
                               SharedPrefHelper.setUserFinishedGame(id: _deviceData['appVersion']);
                               pushNamed(context, QuizSummaryScreen.routeName);
