@@ -8,16 +8,18 @@ Future postParticipantsDetailsOnSignUp(WidgetRef ref, Map map) async {
       .doc(SharedPrefHelper.getUserID());
   return details.set(map);
 }
-Future updateFinalScore( double scoreTotal) async {
+
+Future updateFinalScore(double scoreTotal) async {
   DocumentReference details = FirebaseFirestore.instance
       .collection('users')
       .doc(SharedPrefHelper.getUserID());
   return details.update({'scoreTotal': scoreTotal});
 }
 
-
-Future postParticipantsScore(WidgetRef ref, Map map) async {
+Future postParticipantsScore(WidgetRef ref, Map map, String projectName) async {
   DocumentReference details = FirebaseFirestore.instance
+      .collection('individuals')
+      .doc(projectName)
       .collection(SharedPrefHelper.getUserID())
       .doc();
   return details.set(map);

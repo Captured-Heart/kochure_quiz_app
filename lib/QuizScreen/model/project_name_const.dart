@@ -1,0 +1,1 @@
+const projectName = 'Abraka SMS 1.0';

@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
               case QuizRulesScreen.routeName:
                 return const QuizRulesScreen();
               case QuizSummaryScreen.routeName:
-                return  QuizSummaryScreen();
+                return const  QuizSummaryScreen();
               case QuizScreenDesktop.routeName:
                 return const QuizScreenDesktop();
               case LeaderScoreBoardScreen.routeName:

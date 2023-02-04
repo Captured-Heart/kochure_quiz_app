@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+import 'package:kochure_quiz_app/QuizScreen/model/project_name_const.dart';
 import 'package:kochure_quiz_app/QuizScreen/views/quiz_summary_screen.dart';
-import 'package:kochure_quiz_app/ScoreBoard/leaderboard_screen.dart';
 import 'package:kochure_quiz_app/utils/top_snack_bar.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
@@ -19,6 +22,53 @@ class QuizScreenDesktop extends ConsumerStatefulWidget {
 
 class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
   final QuestionBank question = QuestionBank();
+static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+  Map<String, dynamic> _deviceData = <String, dynamic>{};
+  @override
+  void initState() {
+    initPlatformState();
+    super.initState();
+  }
+
+  Future<void> initPlatformState() async {
+    var deviceData = <String, dynamic>{};
+
+    try {
+      if (kIsWeb) {
+        deviceData = _readWebBrowserInfo(await deviceInfoPlugin.webBrowserInfo);
+      }
+    } on PlatformException {
+      deviceData = <String, dynamic>{
+        'Error:': 'Failed to get platform version.'
+      };
+    }
+
+    if (!mounted) return;
+
+    setState(() {
+      _deviceData = deviceData;
+    });
+  }
+
+  Map<String, dynamic> _readWebBrowserInfo(WebBrowserInfo data) {
+    return <String, dynamic>{
+      'browserName': describeEnum(data.browserName),
+      'appCodeName': data.appCodeName,
+      'appName': data.appName,
+      'appVersion': data.appVersion,
+      'deviceMemory': data.deviceMemory,
+      'language': data.language,
+      'languages': data.languages,
+      'platform': data.platform,
+      'product': data.product,
+      'productSub': data.productSub,
+      'userAgent': data.userAgent,
+      'vendor': data.vendor,
+      'vendorSub': data.vendorSub,
+      'hardwareConcurrency': data.hardwareConcurrency,
+      'maxTouchPoints': data.maxTouchPoints,
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +112,7 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
                   await updateFinalScore(
                     SharedPrefHelper.getScoreTotal(),
                   );
-                  await postParticipantsScore(ref, quizMap).whenComplete(() {
+                  await postParticipantsScore(ref, quizMap, projectName).whenComplete(() {
                     ref.read(pageViewControllerProvider).jumpToPage(no + 1);
                   });
                   // ref.invalidate(countDownControllerProvider);
@@ -163,8 +213,9 @@ class QuizScreenDesktopState extends ConsumerState<QuizScreenDesktop> {
                                 .update((state) => false);
                             ref.read(countDownControllerProvider).restart();
 
-                            if (value + 1 == question.questionBank.length) {
+                            if (value + 2 == question.questionBank.length) {
                               // ignore: use_build_context_synchronously
+                              SharedPrefHelper.setUserFinishedGame(id: _deviceData['appVersion']);
                               pushNamed(context, QuizSummaryScreen.routeName);
                               await updateFinalScore(
                                 SharedPrefHelper.getScoreTotal(),

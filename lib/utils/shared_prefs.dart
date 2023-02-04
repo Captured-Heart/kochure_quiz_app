@@ -13,14 +13,23 @@ class SharedPrefHelper {
     await prefs?.clear();
   }
 
-  //! SAVE doctor ID
+  //! SET USER ID
   static void setUserID({required String id}) {
     prefs?.setString('uniqueId', id);
   }
 
-  //! GET Doctor ID
+  //! GET USER ID
   static String getUserID() {
     String id = prefs?.getString('uniqueId') ?? '';
+    return id;
+  }
+    //! SAVE USER FINISHED GAME
+  static void setUserFinishedGame({required String id}) {
+    prefs?.setString('gameFinished', id);
+  }
+  //! GET USER FINISHED GAME
+  static String getUserFinishedGame() {
+    String id = prefs?.getString('gameFinished') ?? '';
     return id;
   }
 

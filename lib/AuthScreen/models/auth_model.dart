@@ -6,6 +6,8 @@ class AuthModel {
   String? username;
   Timestamp? createdAt;
   String? email;
+  String? deviceId;
+
   num? scoreTotal;
 
   AuthModel({
@@ -15,6 +17,7 @@ class AuthModel {
     this.createdAt,
     this.email,
     this.scoreTotal,
+    this.deviceId,
   });
 
   factory AuthModel.fromJson(Map<String, dynamic> json) => AuthModel(
@@ -23,6 +26,7 @@ class AuthModel {
         username: json['username'] as String?,
         createdAt: json['createdAt'] as Timestamp?,
         email: json['email'] as String?,
+        deviceId: json['deviceId'] as String?,
         scoreTotal: json['scoreTotal'] as num?,
       );
 
@@ -33,5 +37,6 @@ class AuthModel {
         'createdAt': Timestamp.now(),
         'email': email,
         'scoreTotal': scoreTotal,
+        'deviceId': deviceId,
       };
 }

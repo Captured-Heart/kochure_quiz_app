@@ -1,9 +1,7 @@
-import 'package:kochure_quiz_app/QuizScreen/views/quiz_rules_screen.dart';
 import 'package:kochure_quiz_app/QuizScreen/views/quiz_summary_screen.dart';
 import 'package:kochure_quiz_app/utils/shared_prefs.dart';
 
 import '../../../app.dart';
-import '../../ScoreBoard/leaderboard_screen.dart';
 
 class OnboardScreenDesktop extends StatelessWidget {
   static const String routeName = 'welcome_screen';
@@ -11,6 +9,7 @@ class OnboardScreenDesktop extends StatelessWidget {
   const OnboardScreenDesktop({
     Key? key,
   }) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +121,11 @@ class OnboardScreenDesktop extends StatelessWidget {
                       onPressed: () {
                         SharedPrefHelper.getUserID().isEmpty
                             ? pushNamed(context, AuthScreenDesktop.routeName)
-                            : pushNamed(context, QuizScreenDesktop.routeName);
+                            : SharedPrefHelper.getUserFinishedGame().isEmpty
+                                ? pushNamed(
+                                    context, QuizScreenDesktop.routeName)
+                                : pushNamed(
+                                    context, QuizSummaryScreen.routeName);
                       },
                       child: Text(
                         'Next',
