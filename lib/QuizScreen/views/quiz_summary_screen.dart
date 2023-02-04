@@ -70,6 +70,8 @@ class QuizSummaryScreenState extends ConsumerState<QuizSummaryScreen> {
                       return Center(
                         child: Text(
                           e.toString(),
+                          textScaleFactor: 1.4,
+                          style: const TextStyle(color: BrandColors.colorPink),
                         ),
                       );
                     },
