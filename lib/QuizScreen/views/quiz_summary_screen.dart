@@ -39,7 +39,9 @@ class QuizSummaryScreenState extends ConsumerState<QuizSummaryScreen> {
             children: [
               KochureConfettiWidget(ref: ref),
               Container(
-                height: size.height * 0.3,
+                // height: Responsive.isDesktop(context)
+                //     ? size.height * 0.5
+                //     : size.height * 0.3,
                 width: size.width,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -165,35 +167,55 @@ class QuizSummaryScreenState extends ConsumerState<QuizSummaryScreen> {
               ],
             ),
           ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                summaryScreenDetailsWIdget(
-                  title: 'Email: ',
-                  subtitle: email,
-                  context: context,
-                ),
-                summaryScreenDetailsWIdget(
-                  title: 'Phone No: ',
-                  subtitle: phone,
-                  context: context,
-                ),
-                summaryScreenDetailsWIdget(
-                  title: 'username: ',
-                  subtitle: username,
-                  context: context,
-                ),
-                summaryScreenDetailsWIdget(
-                  title: 'date: ',
-                  subtitle: date,
-                  context: context,
-                ),
-              ],
-            ),
+          summaryScreenDetailsWIdget(
+            title: 'Email: ',
+            subtitle: email,
+            context: context,
           ),
+          summaryScreenDetailsWIdget(
+            title: 'Phone No: ',
+            subtitle: phone,
+            context: context,
+          ),
+          summaryScreenDetailsWIdget(
+            title: 'username: ',
+            subtitle: username,
+            context: context,
+          ),
+          summaryScreenDetailsWIdget(
+            title: 'date: ',
+            subtitle: date,
+            context: context,
+          ),
+          // Expanded(
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     mainAxisSize: MainAxisSize.max,
+          //     children: [
+          //       summaryScreenDetailsWIdget(
+          //         title: 'Email: ',
+          //         subtitle: email,
+          //         context: context,
+          //       ),
+          //       summaryScreenDetailsWIdget(
+          //         title: 'Phone No: ',
+          //         subtitle: phone,
+          //         context: context,
+          //       ),
+          //       summaryScreenDetailsWIdget(
+          //         title: 'username: ',
+          //         subtitle: username,
+          //         context: context,
+          //       ),
+          //       summaryScreenDetailsWIdget(
+          //         title: 'date: ',
+          //         subtitle: date,
+          //         context: context,
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ]
             .expand((element) => [
                   element,

@@ -58,11 +58,14 @@ class QuizRulesScreen extends StatelessWidget {
                       '5. Please have it in mind that, this game tests for speed and accuracy🚀.',
                       style: TextStyle(fontSize: 15, color: Colors.white),
                     ),
-                    KochureButton(
-                        onTap: () {
-                          pushNamed(context, QuizScreenDesktop.routeName);
-                        },
-                        text: 'Start quiz')
+                    Center(
+                      child: KochureButton(
+                        width: size.width * 0.5,
+                          onTap: () {
+                            pushNamed(context, QuizScreenDesktop.routeName);
+                          },
+                          text: 'Start quiz'),
+                    )
                   ]
                       .expand(
                         (element) => [
