@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:kochure_quiz_app/QuizScreen/services/fetch_quiz_summary.dart';
+import 'package:kochure_quiz_app/ScoreBoard/leaderboard_screen.dart';
 import 'package:kochure_quiz_app/utils/date_formatter.dart';
 
 import '../../app.dart';
@@ -79,16 +80,97 @@ class QuizSummaryScreenState extends ConsumerState<QuizSummaryScreen> {
                           child: CircularProgressIndicator(),
                         )),
               ),
-
+              SizedBox(
+                height: size.height * 0.08,
+              ),
               Center(
-                  child: Text(
-                'Thank You',
-                style: GoogleFonts.merriweather(
-                  color: BrandColors.colorBackground,
+                child: Column(
+                  children: [
+                    Text(
+                      'Thank You',
+                      style: GoogleFonts.merriweather(
+                        color: BrandColors.colorBackground,
+                      ),
+                      textScaleFactor: 3.5,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(
+                      height: size.height * 0.06,
+                    ),
+                    Center(
+                      child: Card(
+                        color: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            side: const BorderSide(
+                              color: BrandColors.colorOrange,
+                            )),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20.0, vertical: 10),
+                          child: GestureDetector(
+                            onTap: () {
+                              pushNamed(
+                                  context, LeaderScoreBoardScreen.routeName);
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Click to view the leaderboard',
+                                  style: GoogleFonts.abrilFatface(
+                                    fontSize: Responsive.isDesktop(context)
+                                        ? size.height * 0.04
+                                        : size.height * 0.02,
+                                    color: BrandColors.colorOrange,
+                                  ),
+                                ),
+                                // AnimatedTextKit(
+                                //   animatedTexts: [
+                                //     ColorizeAnimatedText(
+                                //       'Click to view the leaderboard',
+                                //       textStyle: GoogleFonts.abrilFatface(
+                                //         fontSize: Responsive.isDesktop(context)
+                                //             ? size.height * 0.04
+                                //             : size.height * 0.02,
+                                //         color: BrandColors.colorBackground,
+                                //       ),
+                                //       colors: [
+                                //         BrandColors.colorOrange,
+                                //         BrandColors.colorPink,
+                                //         BrandColors.colorOrange,
+                                //         BrandColors.colorPink,
+                                //         BrandColors.colorGreen,
+                                //         BrandColors.instantBuyBalanceText,
+                                //       ],
+                                //       speed: const Duration(milliseconds: 180),
+                                //     ),
+                                //   ],
+                                //   isRepeatingAnimation: true,
+                                //   repeatForever: true,
+                                //   onTap: () {
+                                //     pushNamed(context,
+                                //         LeaderScoreBoardScreen.routeName);
+                                //   },
+                                // ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  '  🚀',
+                                  textScaleFactor:
+                                      Responsive.isDesktop(context) ? 3 : 1.5,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                textScaleFactor: 3.5,
-                textAlign: TextAlign.center,
-              )),
+              ),
 
               // Expanded(
               //   // height: size.height * 0.7,
@@ -155,7 +237,7 @@ class QuizSummaryScreenState extends ConsumerState<QuizSummaryScreen> {
                   textScaleFactor: Responsive.isDesktop(context) ? 3 : 1.5,
                 ),
                 CircleAvatar(
-                  radius: 35,
+                  radius: Responsive.isDesktop(context) ? 60 : 35,
                   backgroundColor: Colors.purple[300],
                   child: Text(
                     score,
@@ -163,7 +245,7 @@ class QuizSummaryScreenState extends ConsumerState<QuizSummaryScreen> {
                       color: Colors.amber,
                       fontWeight: AppFontWeight.bold,
                     ),
-                    textScaleFactor: 1.2,
+                    textScaleFactor: Responsive.isDesktop(context) ? 3 : 1.2,
                   ),
                 )
               ],

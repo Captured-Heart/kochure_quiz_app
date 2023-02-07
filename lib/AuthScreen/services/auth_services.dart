@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +8,7 @@ import 'package:kochure_quiz_app/QuizScreen/views/quiz_rules_screen.dart';
 import 'package:kochure_quiz_app/utils/shared_prefs.dart';
 import 'package:kochure_quiz_app/utils/top_snack_bar.dart';
 
+import '../../QuizScreen/views/quiz_summary_screen.dart';
 import '../../app.dart';
 
 class AuthenticationServices {
@@ -38,8 +39,9 @@ class AuthenticationServices {
           return value;
         },
       );
-      // ignore: use_build_context_synchronously
-      pushNamed(context, QuizRulesScreen.routeName);
+      pushNamed(context, QuizScreenDesktop.routeName);
+
+      // pushNamed(context, QuizRulesScreen.routeName);
       Map map = AuthModel(
         username: username,
         phoneNo: phoneNo,

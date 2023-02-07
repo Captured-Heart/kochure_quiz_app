@@ -106,6 +106,7 @@ class AuthScreenDesktopState extends ConsumerState<AuthScreenDesktop> {
                         ),
                         RegTextField(
                           myController: phoneNoController,
+                          textInputType: TextInputType.phone,
                           hintText: 'Phone Number',
                           validator: MultiValidator([
                             RequiredValidator(

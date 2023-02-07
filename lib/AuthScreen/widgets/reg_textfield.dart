@@ -7,17 +7,18 @@ class RegTextField extends StatelessWidget {
     Key? key,
     required this.myController,
     required this.hintText,
-    this.validator,
+    this.validator, this.textInputType,
   }) : super(key: key);
 
   final TextEditingController myController;
   final String hintText;
   final String? Function(String?)? validator;
+  final TextInputType ? textInputType;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: myController,
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: textInputType ?? TextInputType.emailAddress,
       style: const TextStyle(color: BrandColors.colorBackground, fontSize: 20),
       cursorColor: BrandColors.colorBackground,
       cursorWidth: 6,

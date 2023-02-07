@@ -1,6 +1,9 @@
 import 'package:kochure_quiz_app/QuizScreen/services/fetch_quiz_switch.dart';
 import 'package:kochure_quiz_app/app.dart';
 
+import '../../utils/shared_prefs.dart';
+import 'quiz_summary_screen.dart';
+
 class QuizRulesScreen extends ConsumerWidget {
   static const String routeName = 'instructions';
   const QuizRulesScreen({Key? key}) : super(key: key);
@@ -35,10 +38,13 @@ class QuizRulesScreen extends ConsumerWidget {
                   children: <Widget>[
                     const Text(
                       '🔔🔔 Game Rules 📢.',
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
                       style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.w500),
+                          textScaleFactor: 1.5,
                     ),
                     const Text(
                       '1. Register with valid details(Email and Phone no) as winners will be sent a message to retrieve their gifts😇.',
@@ -93,7 +99,16 @@ class QuizRulesScreen extends ConsumerWidget {
                       child: KochureButton(
                           width: size.width * 0.5,
                           onTap: () {
-                            pushNamed(context, QuizScreenDesktop.routeName);
+                            // pushNamed(context, QuizScreenDesktop.routeName);
+                            SharedPrefHelper.getUserID().isEmpty
+                                ? pushNamed(
+                                    context, AuthScreenDesktop.routeName)
+
+                                // : SharedPrefHelper.getUserFinishedGame().isEmpty
+                                //     ? pushNamed(
+                                //         context, QuizScreenDesktop.routeName)
+                                : pushNamed(
+                                    context, QuizSummaryScreen.routeName);
                           },
                           text: 'Start quiz'),
                     ),

@@ -14,24 +14,29 @@ class OnBoardingScreenAds extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width:
-          Responsive.isDesktop(context) ? size.width * 0.35 : size.width * 0.38,
-      height: Responsive.isDesktop(context)
-          ? size.height * 0.38
-          : size.height * 0.25,
+      // width:
+      //     Responsive.isDesktop(context) ? size.width * 0.5 : size.width * 0.38,
+      // height: Responsive.isDesktop(context)
+      //     ? size.height * 0.38
+      //     : size.height * 0.25,
       child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
           // color: BrandColors.colorBackground,
           // elevation: 4,
+          margin: EdgeInsets.symmetric(
+            horizontal: Responsive.isDesktop(context)
+                ? size.width * 0.1
+                : size.width * 0.08,
+            vertical: 5,
+          ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Image.asset(
               imgUrl,
               height: size.height,
               width: size.width,
-              
               fit: BoxFit.fill,
             ),
           )),

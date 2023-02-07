@@ -2,6 +2,7 @@ import 'package:kochure_quiz_app/QuizScreen/views/quiz_summary_screen.dart';
 import 'package:kochure_quiz_app/utils/shared_prefs.dart';
 
 import '../../../app.dart';
+import '../../QuizScreen/views/quiz_rules_screen.dart';
 
 class OnboardScreenDesktop extends StatelessWidget {
   static const String routeName = 'welcome_screen';
@@ -9,7 +10,6 @@ class OnboardScreenDesktop extends StatelessWidget {
   const OnboardScreenDesktop({
     Key? key,
   }) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -70,33 +70,39 @@ class OnboardScreenDesktop extends StatelessWidget {
                           .toList()),
                 ),
                 Expanded(
-                  child: Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    spacing: 10,
-                    runSpacing: 20,
-                    children: [
-                      OnBoardingScreenAds(
-                        title: 'title',
-                        size: size,
-                        imgUrl: quizOnBoard2,
-                      ),
-                      OnBoardingScreenAds(
-                        title: 'title',
-                        size: size,
-                        imgUrl: quizOnBoard1,
-                      ),
-                      OnBoardingScreenAds(
-                        title: 'title',
-                        size: size,
-                        imgUrl: quizOnBoard3,
-                      ),
-                      OnBoardingScreenAds(
-                        title: 'title',
-                        size: size,
-                        imgUrl: quizOnBoard4,
-                      ),
-                    ],
+                  child: OnBoardingScreenAds(
+                    title: 'title',
+                    size: size,
+                    imgUrl: quizOnBoard3,
                   ),
+
+                  // Wrap(
+                  //   crossAxisAlignment: WrapCrossAlignment.center,
+                  //   spacing: 10,
+                  //   runSpacing: 20,
+                  //   children: [
+                  //     OnBoardingScreenAds(
+                  //       title: 'title',
+                  //       size: size,
+                  //       imgUrl: quizOnBoard2,
+                  //     ),
+                  //     OnBoardingScreenAds(
+                  //       title: 'title',
+                  //       size: size,
+                  //       imgUrl: quizOnBoard1,
+                  //     ),
+                  //     OnBoardingScreenAds(
+                  //       title: 'title',
+                  //       size: size,
+                  //       imgUrl: quizOnBoard3,
+                  //     ),
+                  //     OnBoardingScreenAds(
+                  //       title: 'title',
+                  //       size: size,
+                  //       imgUrl: quizOnBoard4,
+                  //     ),
+                  //   ],
+                  // ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(
@@ -119,13 +125,14 @@ class OnboardScreenDesktop extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        SharedPrefHelper.getUserID().isEmpty
-                            ? pushNamed(context, AuthScreenDesktop.routeName)
-                            : SharedPrefHelper.getUserFinishedGame().isEmpty
-                                ? pushNamed(
-                                    context, QuizScreenDesktop.routeName)
-                                : pushNamed(
-                                    context, QuizSummaryScreen.routeName);
+                        pushNamed(context, QuizRulesScreen.routeName);
+
+                        // SharedPrefHelper.getUserID().isEmpty
+                        //     ? pushNamed(context, AuthScreenDesktop.routeName)
+                        //     // : SharedPrefHelper.getUserFinishedGame().isEmpty
+                        //     //     ? pushNamed(
+                        //     //         context, QuizScreenDesktop.routeName)
+                        //     : pushNamed(context, QuizSummaryScreen.routeName);
                       },
                       child: Text(
                         'Next',
